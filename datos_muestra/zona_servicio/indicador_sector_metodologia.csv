@@ -1,0 +1,67 @@
+anio,semestre,fecha_periodo,sector_nombre,metodologia_nombre,total_matriculados,total_programas,registros
+2015,1,2015-01-01,Oficial,Distancia (tradicional),138475,221,3981
+2015,1,2015-01-01,Oficial,Presencial,592847,2987,6080
+2015,1,2015-01-01,Oficial,Virtual,10719,40,954
+2015,1,2015-01-01,Privada,Distancia (tradicional),130557,210,3567
+2015,1,2015-01-01,Privada,Presencial,942255,5426,10600
+2015,1,2015-01-01,Privada,Virtual,52850,265,545
+2015,2,2015-07-01,Oficial,Presencial,425847,138,3846
+2016,1,2016-01-01,Oficial,Distancia (tradicional),130340,234,3695
+2016,1,2016-01-01,Oficial,Presencial,614240,3186,6491
+2016,1,2016-01-01,Oficial,Virtual,19427,56,1657
+2016,1,2016-01-01,Privada,Distancia (tradicional),146198,230,3067
+2016,1,2016-01-01,Privada,Presencial,980508,5807,11483
+2016,1,2016-01-01,Privada,Virtual,73031,340,787
+2016,2,2016-07-01,Oficial,Distancia (tradicional),2257,1,50
+2016,2,2016-07-01,Oficial,Presencial,394468,135,3491
+2016,2,2016-07-01,Oficial,Virtual,33965,6,298
+2017,1,2017-01-01,Oficial,Distancia (tradicional),128064,224,3672
+2017,1,2017-01-01,Oficial,Presencial,621876,3326,7031
+2017,1,2017-01-01,Oficial,Virtual,24207,67,1964
+2017,1,2017-01-01,Privada,Distancia (tradicional),151399,236,3020
+2017,1,2017-01-01,Privada,Presencial,967341,5988,12177
+2017,1,2017-01-01,Privada,Virtual,85784,400,864
+2017,2,2017-07-01,Oficial,Distancia (tradicional),3577,1,68
+2017,2,2017-07-01,Oficial,Presencial,404826,136,3583
+2017,2,2017-07-01,Oficial,Virtual,59240,6,353
+2018,1,2018-01-01,Oficial,Distancia (tradicional),122330,212,3437
+2018,1,2018-01-01,Oficial,Presencial,629826,3419,7027
+2018,1,2018-01-01,Oficial,Virtual,26673,79,2041
+2018,1,2018-01-01,Privada,Distancia (tradicional),142214,226,1919
+2018,1,2018-01-01,Privada,Presencial,953354,6192,12145
+2018,1,2018-01-01,Privada,Virtual,102313,429,823
+2018,2,2018-07-01,Oficial,Distancia (tradicional),4972,3,90
+2018,2,2018-07-01,Oficial,Presencial,387497,415,4171
+2018,2,2018-07-01,Oficial,Virtual,71184,17,395
+2019,1,2019-01-01,Oficial,Distancia (tradicional),109764,207,3335
+2019,1,2019-01-01,Oficial,Presencial,638727,3562,7520
+2019,1,2019-01-01,Oficial,Virtual,38530,99,2628
+2019,1,2019-01-01,Privada,Distancia (tradicional),124032,232,2677
+2019,1,2019-01-01,Privada,Presencial,941716,6375,13039
+2019,1,2019-01-01,Privada,Virtual,112372,452,1001
+2019,2,2019-07-01,Oficial,Distancia (tradicional),6627,3,98
+2019,2,2019-07-01,Oficial,Presencial,353759,679,4566
+2019,2,2019-07-01,Oficial,Virtual,70723,20,568
+2020,1,2020-01-01,Oficial,Distancia (tradicional),101758,203,2967
+2020,1,2020-01-01,Oficial,Presencial,619786,3474,7391
+2020,1,2020-01-01,Oficial,Virtual,57367,121,3070
+2020,1,2020-01-01,Privada,Distancia (tradicional),114840,215,2128
+2020,1,2020-01-01,Privada,Distancia (virtual),65,3,6
+2020,1,2020-01-01,Privada,Presencial,914206,6380,12692
+2020,1,2020-01-01,Privada,Virtual,122591,508,1238
+2020,2,2020-07-01,Oficial,Distancia (tradicional),7572,3,110
+2020,2,2020-07-01,Oficial,Presencial,345543,900,4578
+2020,2,2020-07-01,Oficial,Virtual,71425,19,541
+2021,1,2021-01-01,Oficial,Distancia (tradicional),122132,208,3353
+2021,1,2021-01-01,Oficial,Presencial,676234,3543,7414
+2021,1,2021-01-01,Oficial,Virtual,82362,128,3977
+2021,1,2021-01-01,Privada,Distancia (tradicional),105381,218,1825
+2021,1,2021-01-01,Privada,Distancia (virtual),936,7,14
+2021,1,2021-01-01,Privada,Dual,24,2,6
+2021,1,2021-01-01,Privada,Presencial,851188,6647,12955
+2021,1,2021-01-01,Privada,Presencial-Dual,84,1,2
+2021,1,2021-01-01,Privada,Presencial-Virtual,195,1,2
+2021,1,2021-01-01,Privada,Virtual,155847,599,1168
+2021,2,2021-07-01,Oficial,Distancia (tradicional),7670,3,110
+2021,2,2021-07-01,Oficial,Presencial,308591,919,3697
+2021,2,2021-07-01,Oficial,Virtual,136795,17,34

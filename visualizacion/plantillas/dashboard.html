@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matrícula Educación Superior Colombia (2015–2021) · Pipeline Big Data</title>
+  <style>
+    @font-face { font-family: "Inter"; font-weight: 400; src: url(data:font/woff2;base64,{{ fuentes[400] }}) format("woff2"); }
+    @font-face { font-family: "Inter"; font-weight: 600; src: url(data:font/woff2;base64,{{ fuentes[600] }}) format("woff2"); }
+    @font-face { font-family: "Inter"; font-weight: 800; src: url(data:font/woff2;base64,{{ fuentes[800] }}) format("woff2"); }
+
+    :root {
+      --bg: #0b1220;
+      --surface: #121c2e;
+      --surface-2: #18253d;
+      --border: #243554;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --accent: #f59e0b;
+      --blue: #38bdf8;
+      --emerald: #34d399;
+      --rose: #fb7185;
+      --violet: #a78bfa;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      font-feature-settings: "tnum" 1;
+      line-height: 1.5;
+      padding: 28px 24px 48px;
+    }
+    .wrap { max-width: 1360px; margin: 0 auto; }
+
+    header {
+      background: linear-gradient(135deg, #121c2e 0%, #172540 100%);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 26px 30px;
+      margin-bottom: 22px;
+    }
+    .eyebrow {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    h1 {
+      font-size: clamp(22px, 2.5vw, 31px);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      color: #ffffff;
+    }
+    .meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .meta-bar strong { color: var(--text); font-weight: 600; }
+    .badge {
+      display: inline-block;
+      background: rgba(245, 158, 11, 0.14);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: #fcd34d;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+    .kpi {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 20px;
+    }
+    .kpi-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .kpi-value { font-size: 30px; font-weight: 800; margin: 6px 0 4px; color: #ffffff; }
+    .kpi-sub { font-size: 13px; color: var(--muted); }
+    .kpi-sub .up { color: var(--emerald); font-weight: 600; }
+    .kpi-sub .hl { color: var(--accent); font-weight: 600; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    @media (max-width: 960px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 22px;
+      margin-bottom: 18px;
+    }
+    .grid-2 .card { margin-bottom: 0; }
+    .card h2 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+    .card .desc { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+    .chart { width: 100%; height: 370px; }
+    .chart-tall { width: 100%; height: 410px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 6px;
+    }
+    th, td {
+      padding: 9px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: var(--surface-2);
+    }
+    td.num, th.num { text-align: right; }
+    tr.highlight { background: rgba(245, 158, 11, 0.14); font-weight: 600; }
+
+    footer {
+      margin-top: 28px;
+      padding: 18px 22px;
+      border-top: 1px solid var(--border);
+      font-size: 12.5px;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    footer strong { color: var(--text); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="eyebrow">Pipeline de Datos Masivos · Arquitectura Lambda · Zona de Servicio PostgreSQL</div>
+      <h1>{{ d.titulo_respuesta }}</h1>
+      <div class="meta-bar">
+        <span><strong>Fuente oficial:</strong> {{ d.meta.fuente_cita }}</span>
+        <span><strong>Corte de cifras:</strong> Periodos {{ d.meta.anio_desde }}-1 a {{ d.meta.anio_hasta }}-2 (fecha máx. {{ d.meta.fecha_hasta }})</span>
+        <span><strong>Actualizado:</strong> {{ d.meta.fecha_ejecucion_utc }}</span>
+        {% if d.kpi.duplicados_corregidos > 0 %}
+        <span class="badge">{{ "{:,}".format(d.kpi.duplicados_corregidos).replace(",", ".") }} duplicados oficiales depurados en PySpark</span>
+        {% endif %}
+      </div>
+    </header>
+
+    <section class="kpis">
+      <div class="kpi">
+        <div class="kpi-label">Matrícula Colombia ({{ d.kpi.periodo_corte }})</div>
+        <div class="kpi-value" id="kpi-col">—</div>
+        <div class="kpi-sub">Variación vs. 2015-1: <span class="up">{{ "%+.1f"|format(d.kpi.variacion_colombia_pct) }} %</span> · {{ d.kpi.ies_unicas }} IES</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Antioquia ({{ d.kpi.periodo_corte }})</div>
+        <div class="kpi-value" id="kpi-ant">—</div>
+        <div class="kpi-sub"><span class="hl">{{ d.kpi.pct_antioquia }} %</span> del total nacional ({{ "%+.1f"|format(d.kpi.variacion_antioquia_pct) }} % vs. 2015-1)</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Educación Virtual ({{ d.kpi.periodo_corte }})</div>
+        <div class="kpi-value">{{ d.kpi.pct_virtual }} %</div>
+        <div class="kpi-sub">Crecimiento 2015–2021: <span class="up">+{{ d.kpi.crec_virtual_pct }} %</span> en estudiantes</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Participación Femenina &amp; Sector Oficial</div>
+        <div class="kpi-value">{{ d.kpi.pct_femenino }} %</div>
+        <div class="kpi-sub">Mujeres matriculadas · Sector Oficial: <span class="hl">{{ d.kpi.pct_oficial }} %</span></div>
+      </div>
+    </section>
+
+    <div class="grid-2">
+      <section class="card">
+        <h2>1. Evolución de la matrícula: Colombia vs. Antioquia (2015–2021)</h2>
+        <p class="desc">Cohorte del primer semestre de cada año (tras eliminar la duplicación 2× detectada en la fuente 2015–2019).</p>
+        <div id="chart-evolucion" class="chart"></div>
+      </section>
+
+      <section class="card">
+        <h2>2. Top 12 departamentos con mayor matrícula ({{ d.kpi.periodo_corte }})</h2>
+        <p class="desc">90 variantes sucias en datos crudos normalizadas al catálogo oficial de 33 departamentos DANE.</p>
+        <div id="chart-deptos" class="chart"></div>
+      </section>
+    </div>
+
+    <div class="grid-2" style="margin-top:18px;">
+      <section class="card">
+        <h2>3. Transformación por metodología: auge de la virtualidad</h2>
+        <p class="desc">Estudiantes matriculados en semestre 1 por modalidad (Presencial, Distancia tradicional y Virtual).</p>
+        <div id="chart-metodologia" class="chart"></div>
+      </section>
+
+      <section class="card">
+        <h2>4. Brecha de género por Área de Conocimiento SNIES ({{ d.meta.anio_hasta }})</h2>
+        <p class="desc">Comparación de matrícula Masculina vs. Femenina en las 8 áreas oficiales del conocimiento.</p>
+        <div id="chart-areas" class="chart"></div>
+      </section>
+    </div>
+
+    <div class="grid-2" style="margin-top:18px;">
+      <section class="card">
+        <h2>5. Sector Oficial vs. Privado y Top IES de Antioquia ({{ d.kpi.periodo_corte }})</h2>
+        <p class="desc">Principales instituciones domiciliadas en Antioquia (se destaca la I.U. Pascual Bravo, código SNIES 3107).</p>
+        <div id="chart-ies" class="chart-tall"></div>
+      </section>
+
+      <section class="card">
+        <h2>6. Reconciliación Arquitectura Lambda (Capa Batch vs. Capa Streaming)</h2>
+        <p class="desc">Validación de totales acumulados anuales (semestres 1 y 2) entre la zona curada HDFS (Batch) y Spark Structured Streaming desde Kafka (Velocidad).</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Año</th>
+              <th class="num">Capa Batch (HDFS → PostgreSQL)</th>
+              <th class="num">Capa Streaming (Kafka + Watermark)</th>
+              <th class="num">Diferencia</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-lambda"></tbody>
+        </table>
+        <p class="desc" style="margin-top:14px;">
+          <strong>Nota metodológica:</strong> Los periodos 2015–2019 en el portal oficial venían duplicados exactamente 2 veces (~160k filas). Tanto la capa Batch (<code>Window + row_number</code>) como la capa Streaming (<code>dropDuplicatesWithinWatermark</code>) aplican la misma llave natural <code>id_registro</code> garantizando consistencia e idempotencia.
+        </p>
+      </section>
+    </div>
+
+    <footer>
+      <div><strong>Estudiantes:</strong> {{ autores }} · {{ institucion }}</div>
+      <div><strong>Fuente:</strong> {{ d.meta.fuente_cita }} · <strong>Corte:</strong> {{ d.meta.fecha_hasta }}</div>
+    </footer>
+  </div>
+
+  <script>{{ plotly_js }}</script>
+  <script>
+    const D = {{ datos_json }};
+    const fmtInt = n => new Intl.NumberFormat("es-CO").format(Math.round(n));
+
+    document.getElementById("kpi-col").textContent = fmtInt(D.kpi.matriculados_colombia);
+    document.getElementById("kpi-ant").textContent = fmtInt(D.kpi.matriculados_antioquia);
+
+    const layoutBase = {
+      paper_bgcolor: "rgba(0,0,0,0)",
+      plot_bgcolor: "rgba(0,0,0,0)",
+      font: { family: "Inter, sans-serif", color: "#cbd5e1", size: 12 },
+      margin: { t: 22, r: 20, b: 48, l: 64 },
+      legend: { orientation: "h", y: -0.18, x: 0 },
+      xaxis: { gridcolor: "#1e293b", linecolor: "#334155" },
+      yaxis: { gridcolor: "#1e293b", linecolor: "#334155", separuffix: "" },
+    };
+    const cfg = { responsive: true, displaylogo: false, locale: "es" };
+
+    // 1. Evolución Colombia vs Antioquia
+    Plotly.newPlot("chart-evolucion", [
+      {
+        x: D.evolucion_sem1.map(r => r.periodo_label),
+        y: D.evolucion_sem1.map(r => r.total_matriculados),
+        name: "Colombia (Total)",
+        type: "bar",
+        marker: { color: "#38bdf8", opacity: 0.85 },
+        hovertemplate: "<b>%{x}</b><br>Colombia: %{y:,.0f}<extra></extra>"
+      },
+      {
+        x: D.evolucion_sem1.map(r => r.periodo_label),
+        y: D.evolucion_sem1.map(r => r.matriculados_antioquia),
+        name: "Antioquia",
+        type: "scatter",
+        mode: "lines+markers",
+        yaxis: "y2",
+        line: { color: "#f59e0b", width: 3 },
+        marker: { size: 8, color: "#f59e0b" },
+        hovertemplate: "<b>%{x}</b><br>Antioquia: %{y:,.0f}<extra></extra>"
+      }
+    ], {
+      ...layoutBase,
+      margin: { t: 22, r: 64, b: 48, l: 70 },
+      yaxis: { ...layoutBase.yaxis, title: "Colombia" },
+      yaxis2: { title: "Antioquia", overlaying: "y", side: "right", showgrid: false, color: "#f59e0b" }
+    }, cfg);
+
+    // 2. Top 12 departamentos
+    const deptosRev = [...D.top_deptos].reverse();
+    Plotly.newPlot("chart-deptos", [{
+      y: deptosRev.map(r => r.departamento_oferta),
+      x: deptosRev.map(r => r.matriculados_sem1),
+      type: "bar",
+      orientation: "h",
+      marker: {
+        color: deptosRev.map(r => r.es_antioquia ? "#f59e0b" : "#38bdf8")
+      },
+      text: deptosRev.map(r => fmtInt(r.matriculados_sem1)),
+      textposition: "outside",
+      hovertemplate: "<b>%{y}</b><br>Matriculados: %{x:,.0f}<extra></extra>"
+    }], {
+      ...layoutBase,
+      margin: { t: 10, r: 70, b: 40, l: 135 },
+      xaxis: { ...layoutBase.xaxis, title: "Estudiantes matriculados" }
+    }, cfg);
+
+    // 3. Metodología (Presencial / Distancia / Virtual)
+    Plotly.newPlot("chart-metodologia", [
+      { x: D.anios, y: D.metodologias["Presencial"], name: "Presencial", type: "bar", marker: { color: "#38bdf8" } },
+      { x: D.anios, y: D.metodologias["Distancia (tradicional)"], name: "Distancia (tradicional)", type: "bar", marker: { color: "#a78bfa" } },
+      { x: D.anios, y: D.metodologias["Virtual"], name: "Virtual", type: "bar", marker: { color: "#34d399" } }
+    ], {
+      ...layoutBase,
+      barmode: "stack",
+      yaxis: { ...layoutBase.yaxis, title: "Matriculados (Semestre 1)" }
+    }, cfg);
+
+    // 4. Áreas x Género
+    const areasRev = [...D.areas_genero].reverse();
+    const acortar = s => s.length > 34 ? s.slice(0, 32) + "…" : s;
+    Plotly.newPlot("chart-areas", [
+      {
+        y: areasRev.map(r => acortar(r.area)),
+        x: areasRev.map(r => r.femenino),
+        name: "Femenino",
+        type: "bar",
+        orientation: "h",
+        marker: { color: "#fb7185" }
+      },
+      {
+        y: areasRev.map(r => acortar(r.area)),
+        x: areasRev.map(r => r.masculino),
+        name: "Masculino",
+        type: "bar",
+        orientation: "h",
+        marker: { color: "#38bdf8" }
+      }
+    ], {
+      ...layoutBase,
+      barmode: "group",
+      margin: { t: 10, r: 20, b: 48, l: 215 },
+      xaxis: { ...layoutBase.xaxis, title: "Matriculados acumulados" }
+    }, cfg);
+
+    // 5. Top IES Antioquia
+    const iesRev = [...D.top_ies_antioquia].reverse();
+    Plotly.newPlot("chart-ies", [{
+      y: iesRev.map(r => acortar(r.nombre_ies)),
+      x: iesRev.map(r => r.matriculados_sem1),
+      type: "bar",
+      orientation: "h",
+      marker: {
+        color: iesRev.map(r => r.es_pascual_bravo ? "#f59e0b" : (r.sector_nombre === "Oficial" ? "#34d399" : "#64748b"))
+      },
+      text: iesRev.map(r => fmtInt(r.matriculados_sem1)),
+      textposition: "outside",
+      hovertemplate: "<b>%{y}</b><br>Matriculados: %{x:,.0f}<extra></extra>"
+    }], {
+      ...layoutBase,
+      margin: { t: 10, r: 72, b: 42, l: 245 },
+      xaxis: { ...layoutBase.xaxis, title: "Matriculados (Semestre 1) · Dorado = I.U. Pascual Bravo, Verde = Oficial" }
+    }, cfg);
+
+    // 6. Tabla Lambda Batch vs Streaming
+    const tbody = document.getElementById("tabla-lambda");
+    D.reconciliacion_lambda.forEach(r => {
+      const diff = r.batch_matriculados - r.stream_matriculados;
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${r.anio}</td>
+        <td class="num">${fmtInt(r.batch_matriculados)}</td>
+        <td class="num">${fmtInt(r.stream_matriculados)}</td>
+        <td class="num">${fmtInt(diff)}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  </script>
+</body>
+</html>
+

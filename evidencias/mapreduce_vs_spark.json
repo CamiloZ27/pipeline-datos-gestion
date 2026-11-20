@@ -1,0 +1,151 @@
+{
+  "origen": "hdfs://namenode:8020/datalake/raw/*/*/fecha_ingesta=*/*.jsonl",
+  "total_mapreduce_registros": 390903,
+  "total_spark_registros": 390903,
+  "total_mapreduce_matriculados": 28745704,
+  "total_spark_matriculados": 28745704,
+  "diferencias": 0,
+  "coincidencia_exacta": true,
+  "detalle": [
+    {
+      "anio": "2015",
+      "id_sector": "1",
+      "sector": "Oficial",
+      "mapreduce_registros": 29722,
+      "spark_registros": 29722,
+      "mapreduce_matriculados": 2335776,
+      "spark_matriculados": 2335776,
+      "coincide": true
+    },
+    {
+      "anio": "2015",
+      "id_sector": "2",
+      "sector": "Privada",
+      "mapreduce_registros": 29424,
+      "spark_registros": 29424,
+      "mapreduce_matriculados": 2251324,
+      "spark_matriculados": 2251324,
+      "coincide": true
+    },
+    {
+      "anio": "2016",
+      "id_sector": "1",
+      "sector": "Oficial",
+      "mapreduce_registros": 31364,
+      "spark_registros": 31364,
+      "mapreduce_matriculados": 2389394,
+      "spark_matriculados": 2389394,
+      "coincide": true
+    },
+    {
+      "anio": "2016",
+      "id_sector": "2",
+      "sector": "Privada",
+      "mapreduce_registros": 30674,
+      "spark_registros": 30674,
+      "mapreduce_matriculados": 2399474,
+      "spark_matriculados": 2399474,
+      "coincide": true
+    },
+    {
+      "anio": "2017",
+      "id_sector": "1",
+      "sector": "Oficial",
+      "mapreduce_registros": 33342,
+      "spark_registros": 33342,
+      "mapreduce_matriculados": 2483580,
+      "spark_matriculados": 2483580,
+      "coincide": true
+    },
+    {
+      "anio": "2017",
+      "id_sector": "2",
+      "sector": "Privada",
+      "mapreduce_registros": 32122,
+      "spark_registros": 32122,
+      "mapreduce_matriculados": 2409048,
+      "spark_matriculados": 2409048,
+      "coincide": true
+    },
+    {
+      "anio": "2018",
+      "id_sector": "1",
+      "sector": "Oficial",
+      "mapreduce_registros": 34322,
+      "spark_registros": 34322,
+      "mapreduce_matriculados": 2484964,
+      "spark_matriculados": 2484964,
+      "coincide": true
+    },
+    {
+      "anio": "2018",
+      "id_sector": "2",
+      "sector": "Privada",
+      "mapreduce_registros": 29782,
+      "spark_registros": 29782,
+      "mapreduce_matriculados": 2395770,
+      "spark_matriculados": 2395770,
+      "coincide": true
+    },
+    {
+      "anio": "2019",
+      "id_sector": "1",
+      "sector": "Oficial",
+      "mapreduce_registros": 37430,
+      "spark_registros": 37430,
+      "mapreduce_matriculados": 2436260,
+      "spark_matriculados": 2436260,
+      "coincide": true
+    },
+    {
+      "anio": "2019",
+      "id_sector": "2",
+      "sector": "Privada",
+      "mapreduce_registros": 33434,
+      "spark_registros": 33434,
+      "mapreduce_matriculados": 2356240,
+      "spark_matriculados": 2356240,
+      "coincide": true
+    },
+    {
+      "anio": "2020",
+      "id_sector": "1",
+      "sector": "Oficial",
+      "mapreduce_registros": 18660,
+      "spark_registros": 18660,
+      "mapreduce_matriculados": 1203895,
+      "spark_matriculados": 1203895,
+      "coincide": true
+    },
+    {
+      "anio": "2020",
+      "id_sector": "2",
+      "sector": "Privada",
+      "mapreduce_registros": 16065,
+      "spark_registros": 16065,
+      "mapreduce_matriculados": 1151708,
+      "spark_matriculados": 1151708,
+      "coincide": true
+    },
+    {
+      "anio": "2021",
+      "id_sector": "1",
+      "sector": "Oficial",
+      "mapreduce_registros": 18588,
+      "spark_registros": 18588,
+      "mapreduce_matriculados": 1334174,
+      "spark_matriculados": 1334174,
+      "coincide": true
+    },
+    {
+      "anio": "2021",
+      "id_sector": "2",
+      "sector": "Privada",
+      "mapreduce_registros": 15974,
+      "spark_registros": 15974,
+      "mapreduce_matriculados": 1114097,
+      "spark_matriculados": 1114097,
+      "coincide": true
+    }
+  ]
+}

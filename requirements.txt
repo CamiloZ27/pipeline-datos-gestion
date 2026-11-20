@@ -1,0 +1,9 @@
+# Dependencias del pipeline (compatibles con Python 3.9+)
+requests>=2.31,<3
+urllib3>=1.26,<3
+kafka-python>=2.0.2,<3
+pytest>=8.0
+jinja2>=3.1
+pg8000>=1.31
+python-dotenv>=1.0
+

@@ -1,0 +1,43 @@
+================================================================================
+EVIDENCIA FASE 3 — APACHE KAFKA (Tópico 3 particiones, Productor y Consumidor)
+Estudiantes: Camilo Zuleta Delgado · Santiago Restrepo Silva
+Dataset: MEN_MATRICULA_ESTADISTICA_ES (datos.gov.co / 5wck-szir)
+================================================================================
+
+1) CREACIÓN DEL TÓPICO (`python3 -m streaming crear-topicos`)
+   Tópico: raw.datos_gov_co
+   Particiones: 3 | Replicación: 1 | Retención: 7 días
+
+2) INSPECCIÓN DEL TÓPICO (`python3 -m streaming info-topico`)
+   {
+     "raw.datos_gov_co": {
+       "num_particiones": 3,
+       "total_mensajes": 390903,
+       "particiones": {
+         "0": {"offset_inicio": 0, "offset_fin": 129914, "mensajes": 129914},
+         "1": {"offset_inicio": 0, "offset_fin": 130021, "mensajes": 130021},
+         "2": {"offset_inicio": 0, "offset_fin": 130968, "mensajes": 130968}
+       }
+     }
+   }
+
+3) PRIMERA EJECUCIÓN DEL PRODUCTOR (`python3 -m streaming producir`, key = id_registro)
+   - men_matricula_es_20261120T170512Z.jsonl -> 356,341 mensajes (2015-2020)
+   - men_matricula_es_20261120T171618Z.jsonl ->  34,562 mensajes (2021 incremental)
+   Total publicado: 390,903 mensajes. Archivos marcados con checkpoint `.kafka_ok`.
+
+4) SEGUNDA EJECUCIÓN DEL PRODUCTOR (`python3 -m streaming producir` — IDEMPOTENCIA)
+   INFO streaming.productor - No hay archivos pendientes por enviar a Kafka (checkpoint .kafka_ok al día).
+   Resultado: {} (0 mensajes duplicados).
+
+5) CONSUMIDOR CON GRUPO (`python3 -m streaming consumir --grupo grupo-verificacion --max 5`)
+   [partición 0 | offset 0] key=2015|1|1101|4|11001|1|1 | anio=2015 | mat=207
+   [partición 0 | offset 1] key=2015|1|1101|6|11001|1|1 | anio=2015 | mat=195
+   [partición 0 | offset 2] key=2015|1|1101|7|11001|1|2 | anio=2015 | mat=425
+   [partición 0 | offset 3] key=2015|1|1101|7|11001|1|1 | anio=2015 | mat=202
+   [partición 0 | offset 4] key=2015|1|1101|8|11001|1|1 | anio=2015 | mat=72
+
+   Grupo 'grupo-verificacion' leyó 390,903 mensajes de 'raw.datos_gov_co':
+     Distribución por partición: {0: 129914, 1: 130021, 2: 130968}
+     Distribución por año:       {'2015': 59146, '2016': 62038, '2017': 65464, '2018': 64104, '2019': 70864, '2020': 34725, '2021': 34562}
+

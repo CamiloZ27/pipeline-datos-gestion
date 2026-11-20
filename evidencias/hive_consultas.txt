@@ -1,0 +1,90 @@
+================================================================================
+EVIDENCIA COMPONENTE OPCIONAL (+2 PTS) — APACHE HIVE 4.0.1
+Tablas EXTERNAS sobre Parquet en HDFS + 4 Consultas SQL Analíticas
+Estudiantes: Camilo Zuleta Delgado · Santiago Restrepo Silva
+================================================================================
+
+1) CREACIÓN DE TABLA EXTERNA Y PARTICIONES (`hive/01_tablas.sql`)
+   Comando: docker compose exec hiveserver2 beeline -u jdbc:hive2://localhost:10000/ -f /proyecto/hive/01_tablas.sql
+
+   Particiones descubiertas por `MSCK REPAIR TABLE matricula_curada`:
+   +------------+
+   | partition  |
+   +------------+
+   | anio=2015  |
+   | anio=2016  |
+   | anio=2017  |
+   | anio=2018  |
+   | anio=2019  |
+   | anio=2020  |
+   | anio=2021  |
+   +------------+
+
+   Verificación total:
+   +---------------------+--------------------------+
+   | filas_curadas_hive  | matriculados_acumulados  |
+   +---------------------+--------------------------+
+   | 230082              | 16773503                 |
+   +---------------------+--------------------------+
+   (Coincide exactamente con PySpark Batch y Structured Streaming: 230,082 filas / 16,773,503 matriculados)
+
+2) CONSULTAS ANALÍTICAS (`hive/02_consultas.sql`)
+   Comando: docker compose exec hiveserver2 beeline -u jdbc:hive2://localhost:10000/matricula_db --silent=true -f /proyecto/hive/02_consultas.sql
+
+   [Consulta 1] Evolución anual Colombia vs. Antioquia y virtualidad (Semestre 1):
+   +-------+-----------------+------------------+----------------+--------------+
+   | anio  | total_colombia  | total_antioquia  | pct_antioquia  | pct_virtual  |
+   +-------+-----------------+------------------+----------------+--------------+
+   | 2015  | 1867703         | 244511           | 13.09          | 3.40         |
+   | 2016  | 1963744         | 254312           | 12.95          | 4.71         |
+   | 2017  | 1978671         | 257231           | 13.00          | 5.56         |
+   | 2018  | 1976710         | 263021           | 13.31          | 6.53         |
+   | 2019  | 1965141         | 259759           | 13.22          | 7.68         |
+   | 2020  | 1930613         | 251151           | 13.01          | 9.32         |
+   | 2021  | 1994383         | 267463           | 13.41          | 11.94        |
+   +-------+-----------------+------------------+----------------+--------------+
+
+   [Consulta 2] Top 10 departamentos en 2021-1 (% oficial e IES activas):
+   +----------------------+----------------------+--------------+--------------+
+   | departamento_oferta  | matriculados_2021_1  | pct_oficial  | ies_activas  |
+   +----------------------+----------------------+--------------+--------------+
+   | Bogotá D.C.          | 618804               | 20.1         | 133          |
+   | Antioquia            | 267463               | 50.8         | 73           |
+   | Valle del Cauca      | 146672               | 46.8         | 60           |
+   | Atlántico            | 112256               | 27.6         | 38           |
+   | Santander            | 109725               | 48.7         | 38           |
+   | Norte de Santander   | 63365                | 81.3         | 23           |
+   | Cundinamarca         | 62659                | 60.4         | 28           |
+   | Bolívar              | 60616                | 46.1         | 40           |
+   | Boyacá               | 58538                | 72.5         | 20           |
+   | Risaralda            | 42721                | 52.1         | 28           |
+   +----------------------+----------------------+--------------+--------------+
+
+   [Consulta 3] Brecha de género por Área de Conocimiento SNIES (2021-1):
+   +------------------------------------------------+----------+----------+--------------+
+   |                  area_nombre                   | mujeres  | hombres  | pct_mujeres  |
+   +------------------------------------------------+----------+----------+--------------+
+   | Economía, Administración, Contaduría y Afines  | 323701   | 223227   | 59.19        |
+   | Ingeniería, Arquitectura, Urbanismo y Afines   | 159638   | 336091   | 32.20        |
+   | Ciencias Sociales y Humanas                    | 267848   | 162543   | 62.23        |
+   | Ciencias de la Educación                       | 116263   | 69187    | 62.69        |
+   | Ciencias de la Salud                           | 122578   | 54057    | 69.40        |
+   | Bellas Artes                                   | 33233    | 29659    | 52.84        |
+   | Matemáticas y Ciencias Naturales               | 24641    | 24137    | 50.52        |
+   | Agronomía, Veterinaria y Afines                | 20066    | 17305    | 53.69        |
+   | Sin clasificar                                 | 5769     | 4440     | 56.51        |
+   +------------------------------------------------+----------+----------+--------------+
+
+   [Consulta 4] Evolución de la Institución Universitaria Pascual Bravo (código 3107):
+   +-------+-----------+-----------------------------+--------------------+--------------+
+   | anio  | semestre  | matriculados_pascual_bravo  | programas_activos  | pct_mujeres  |
+   +-------+-----------+-----------------------------+--------------------+--------------+
+   | 2015  | 1         | 4184                        | 23                 | 18.07        |
+   | 2016  | 1         | 5277                        | 30                 | 16.11        |
+   | 2017  | 1         | 5639                        | 33                 | 15.71        |
+   | 2018  | 1         | 5957                        | 32                 | 16.84        |
+   | 2019  | 1         | 6967                        | 37                 | 18.73        |
+   | 2020  | 1         | 7293                        | 40                 | 21.83        |
+   | 2021  | 1         | 7898                        | 38                 | 25.26        |
+   +-------+-----------+-----------------------------+--------------------+--------------+
+

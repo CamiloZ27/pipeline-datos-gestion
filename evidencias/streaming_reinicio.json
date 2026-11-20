@@ -1,0 +1,41 @@
+{
+  "ejecuciones": [
+    {
+      "timestamp_utc": "2026-11-20T18:50:58Z",
+      "origen": "kafka",
+      "watermark": "5 minutes",
+      "ventana": "10 minutes",
+      "checkpoint": "data/checkpoints/stream_matricula",
+      "lotes_nuevos_procesados": 1,
+      "detalle_lotes": [
+        {
+          "batch_id": 0,
+          "filas_ventana_lote": 47,
+          "registros_unicos_lote": 230082,
+          "matriculados_lote": 16773503
+        }
+      ],
+      "estado_acumulado": {
+        "filas_ventana_total": 47,
+        "registros_unicos_total": 230082,
+        "total_matriculados": 16773503
+      },
+      "duracion_s": 19.5
+    },
+    {
+      "timestamp_utc": "2026-11-20T18:52:14Z",
+      "origen": "kafka",
+      "watermark": "5 minutes",
+      "ventana": "10 minutes",
+      "checkpoint": "data/checkpoints/stream_matricula",
+      "lotes_nuevos_procesados": 0,
+      "detalle_lotes": [],
+      "estado_acumulado": {
+        "filas_ventana_total": 47,
+        "registros_unicos_total": 230082,
+        "total_matriculados": 16773503
+      },
+      "duracion_s": 4.6
+    }
+  ]
+}

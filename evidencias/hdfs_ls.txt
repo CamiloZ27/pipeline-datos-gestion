@@ -1,0 +1,69 @@
+================================================================================
+EVIDENCIA FASE 4a — DATA LAKE EN APACHE HADOOP HDFS (`hdfs dfs -ls -R -h`)
+Estudiantes: Camilo Zuleta Delgado · Santiago Restrepo Silva
+================================================================================
+
+Comando: docker compose exec namenode hdfs dfs -ls -R -h /datalake/raw
+
+drwxr-xr-x   - root supergroup          0 2026-11-20 18:29 /datalake/raw/datos_gov_co
+drwxr-xr-x   - root supergroup          0 2026-11-20 18:29 /datalake/raw/datos_gov_co/men_matricula_es
+drwxr-xr-x   - root supergroup          0 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20
+-rw-r--r--   1 root supergroup     20.1 M 2026-11-20 18:29 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p0-o000000000000.jsonl
+-rw-r--r--   1 root supergroup     18.9 M 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p0-o000000019659.jsonl
+-rw-r--r--   1 root supergroup     19.4 M 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p0-o000000038037.jsonl
+-rw-r--r--   1 root supergroup     19.0 M 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p0-o000000056961.jsonl
+-rw-r--r--   1 root supergroup     19.5 M 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p0-o000000075455.jsonl
+-rw-r--r--   1 root supergroup     19.6 M 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p0-o000000094435.jsonl
+-rw-r--r--   1 root supergroup     17.0 M 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p0-o000000113508.jsonl
+-rw-r--r--   1 root supergroup     20.1 M 2026-11-20 18:29 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p1-o000000000000.jsonl
+-rw-r--r--   1 root supergroup     18.9 M 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p1-o000000019626.jsonl
+-rw-r--r--   1 root supergroup     19.4 M 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p1-o000000038009.jsonl
+-rw-r--r--   1 root supergroup     19.1 M 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p1-o000000056913.jsonl
+-rw-r--r--   1 root supergroup     19.5 M 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p1-o000000075527.jsonl
+-rw-r--r--   1 root supergroup     19.6 M 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p1-o000000094507.jsonl
+-rw-r--r--   1 root supergroup     17.1 M 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p1-o000000113496.jsonl
+-rw-r--r--   1 root supergroup     10.9 M 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p2-o000000000000.jsonl
+-rw-r--r--   1 root supergroup      9.1 M 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p2-o000000010715.jsonl
+-rw-r--r--   1 root supergroup     13.6 M 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p2-o000000019607.jsonl
+-rw-r--r--   1 root supergroup      5.4 M 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p2-o000000032846.jsonl
+-rw-r--r--   1 root supergroup     13.2 M 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p2-o000000038093.jsonl
+-rw-r--r--   1 root supergroup      6.2 M 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p2-o000000050985.jsonl
+-rw-r--r--   1 root supergroup     12.3 M 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p2-o000000057029.jsonl
+-rw-r--r--   1 root supergroup      6.8 M 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p2-o000000068967.jsonl
+-rw-r--r--   1 root supergroup     19.5 M 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p2-o000000075633.jsonl
+-rw-r--r--   1 root supergroup     19.4 M 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p2-o000000094602.jsonl
+-rw-r--r--   1 root supergroup     18.1 M 2026-11-20 18:30 /datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/part-raw.datos_gov_co-p2-o000000113488.jsonl
+
+Resumen del consumidor Kafka -> HDFS:
+  - Total mensajes escritos: 390,903
+  - Total archivos creados:  25 archivos por lote (NO uno por mensaje)
+  - Lotes procesados:        11 lotes con commit manual posterior a la escritura
+  - Idempotencia por nombre: part-<topico>-p<particion>-o<offset_inicial>.jsonl
+
+
+================================================================================
+ZONA CURADA EN HDFS (Parquet particionado por anio — Fase 5)
+================================================================================
+
+Comando: docker compose exec namenode hdfs dfs -ls -R -h /datalake/curated/matricula_es
+
+-rw-r--r--   1 root supergroup          0 2026-11-20 18:37 /datalake/curated/matricula_es/_SUCCESS
+drwxr-xr-x   - root supergroup          0 2026-11-20 18:37 /datalake/curated/matricula_es/anio=2015
+-rw-r--r--   1 root supergroup    721.9 K 2026-11-20 18:37 /datalake/curated/matricula_es/anio=2015/part-00000-*.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-20 18:37 /datalake/curated/matricula_es/anio=2016
+-rw-r--r--   1 root supergroup    780.7 K 2026-11-20 18:37 /datalake/curated/matricula_es/anio=2016/part-00001-*.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-20 18:37 /datalake/curated/matricula_es/anio=2017
+-rw-r--r--   1 root supergroup    820.0 K 2026-11-20 18:37 /datalake/curated/matricula_es/anio=2017/part-00001-*.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-20 18:37 /datalake/curated/matricula_es/anio=2018
+-rw-r--r--   1 root supergroup    817.3 K 2026-11-20 18:37 /datalake/curated/matricula_es/anio=2018/part-00002-*.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-20 18:37 /datalake/curated/matricula_es/anio=2019
+-rw-r--r--   1 root supergroup    896.3 K 2026-11-20 18:37 /datalake/curated/matricula_es/anio=2019/part-00000-*.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-20 18:37 /datalake/curated/matricula_es/anio=2020
+-rw-r--r--   1 root supergroup    880.4 K 2026-11-20 18:37 /datalake/curated/matricula_es/anio=2020/part-00002-*.snappy.parquet
+drwxr-xr-x   - root supergroup          0 2026-11-20 18:37 /datalake/curated/matricula_es/anio=2021
+-rw-r--r--   1 root supergroup    881.5 K 2026-11-20 18:37 /datalake/curated/matricula_es/anio=2021/part-00001-*.snappy.parquet
+
+Comparación de almacenamiento:
+  - Zona raw (JSONL):      401.58 MB (421,091,784 B)
+  - Zona curada (Parquet):   5.66 MB (  5,937,414 B)
+  - Factor de compresión:   70.92x menos (98.6 % de ahorro)

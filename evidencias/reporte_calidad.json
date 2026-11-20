@@ -1,0 +1,123 @@
+{
+  "generado_utc": "2026-11-20T18:37:15Z",
+  "estado": "APROBADO",
+  "fallos_criticos": [],
+  "resumen": {
+    "filas_raw_leidas": 390903,
+    "duplicados_eliminados": 160821,
+    "filas_unicas": 230082,
+    "registros_descartados": 0,
+    "filas_curadas": 230082,
+    "descarte_detalle": {
+      "sin_fecha_periodo": 0,
+      "sin_codigo_ies": 0,
+      "sin_codigo_snies": 0,
+      "sin_depto_oferta": 0,
+      "matriculados_invalidos": 0
+    }
+  },
+  "antes_despues_por_anio": [
+    {
+      "anio": 2015,
+      "filas_raw": 59146,
+      "filas_curadas": 29573,
+      "duplicados_y_descartes": 29573,
+      "total_matriculados_curados": 2293550
+    },
+    {
+      "anio": 2016,
+      "filas_raw": 62038,
+      "filas_curadas": 31019,
+      "duplicados_y_descartes": 31019,
+      "total_matriculados_curados": 2394434
+    },
+    {
+      "anio": 2017,
+      "filas_raw": 65464,
+      "filas_curadas": 32732,
+      "duplicados_y_descartes": 32732,
+      "total_matriculados_curados": 2446314
+    },
+    {
+      "anio": 2018,
+      "filas_raw": 64104,
+      "filas_curadas": 32048,
+      "duplicados_y_descartes": 32056,
+      "total_matriculados_curados": 2440363
+    },
+    {
+      "anio": 2019,
+      "filas_raw": 70864,
+      "filas_curadas": 35432,
+      "duplicados_y_descartes": 35432,
+      "total_matriculados_curados": 2396250
+    },
+    {
+      "anio": 2020,
+      "filas_raw": 34725,
+      "filas_curadas": 34721,
+      "duplicados_y_descartes": 4,
+      "total_matriculados_curados": 2355153
+    },
+    {
+      "anio": 2021,
+      "filas_raw": 34562,
+      "filas_curadas": 34557,
+      "duplicados_y_descartes": 5,
+      "total_matriculados_curados": 2447439
+    }
+  ],
+  "validaciones": [
+    {
+      "nombre": "conteo_mayor_cero",
+      "critica": true,
+      "aprobada": true,
+      "detalle": "Filas curadas = 230,082"
+    },
+    {
+      "nombre": "sin_nulos_columnas_clave",
+      "critica": true,
+      "aprobada": true,
+      "detalle": "Nulos totales en columnas clave = 0",
+      "nulos_por_columna": {
+        "id_registro": 0,
+        "fecha_periodo": 0,
+        "anio": 0,
+        "semestre": 0,
+        "codigo_ies": 0,
+        "codigo_snies": 0,
+        "departamento_oferta": 0,
+        "total_matriculados": 0
+      }
+    },
+    {
+      "nombre": "sin_id_registro_duplicados",
+      "critica": true,
+      "aprobada": true,
+      "detalle": "Duplicados remanentes = 0 (IDs únicos = 230,082)"
+    },
+    {
+      "nombre": "rangos_validos",
+      "critica": true,
+      "aprobada": true,
+      "detalle": "Registros fuera de rango (matriculados/año/semestre) = 0"
+    },
+    {
+      "nombre": "departamentos_dane_canonicos",
+      "critica": true,
+      "aprobada": true,
+      "detalle": "Departamentos distintos = 33 (máx. 33 DANE), registros fuera de catálogo = 0"
+    }
+  ],
+  "almacenamiento": {
+    "origen_raw": "hdfs://namenode:8020/datalake/raw",
+    "destino_curado": "hdfs://namenode:8020/datalake/curated/matricula_es",
+    "columna_particion": "anio",
+    "bytes_raw_jsonl": 421091784,
+    "mb_raw_jsonl": 401.58,
+    "bytes_curado_parquet": 5937414,
+    "mb_curado_parquet": 5.66,
+    "factor_reduccion_x": 70.92,
+    "reduccion_pct": 98.6
+  }
+}

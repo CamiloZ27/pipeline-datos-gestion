@@ -1,0 +1,309 @@
+# =============================================================================
+# Infraestructura Docker del Pipeline de Matrícula Educación Superior Colombia
+# Estudiantes: Camilo Zuleta Delgado · Santiago Restrepo Silva
+# Institución Universitaria Pascual Bravo — Gestión de Datos Masivos G004
+#
+# Perfiles disponibles (para encender solo lo que necesita cada fase):
+#   docker compose --profile kafka up -d                    # Fase 3: Kafka
+#   docker compose --profile kafka-ui up -d                 # Kafka + UI web (localhost:8080)
+#   docker compose --profile kafka --profile hdfs up -d     # Fase 4: Kafka + HDFS
+#   docker compose run --rm spark                           # Fase 5-6: PySpark curado + calidad
+#   docker compose run --rm spark-mapreduce                 # Fase 4b: Comparación MapReduce vs Spark
+#   docker compose run --rm spark-streaming                 # Fase 7: Structured Streaming (Kafka -> Lambda)
+#   docker compose --profile hive up -d                     # Opcional (+2 pts): Hive
+#   docker compose --profile hdfs --profile postgres up -d  # Fase 8: HDFS + PostgreSQL
+#   docker compose run --rm spark-servir                    # Fase 8: Carga zona servicio PostgreSQL
+#   docker compose --profile airflow up -d --build          # Opcional (+3 pts): Airflow (localhost:8082)
+# =============================================================================
+name: pipeline-matricula-es
+
+x-spark-base: &spark-base
+  image: apache/spark:4.0.2-python3
+  profiles: ["spark"]
+  user: root
+  working_dir: /proyecto
+  volumes:
+    - .:/proyecto
+    - spark-ivy:/tmp/.ivy2
+  environment:
+    PYTHONPATH: /proyecto
+    PYTHONDONTWRITEBYTECODE: "1"
+    HADOOP_USER_NAME: root
+    POSTGRES_HOST: postgres
+    POSTGRES_DB: matricula_es
+    POSTGRES_USER: pipeline
+    POSTGRES_PASSWORD: pipeline
+    KAFKA_BOOTSTRAP: kafka:19092
+  ports:
+    - "4040:4040"
+  mem_limit: 2048m
+
+services:
+  # ---------------------------------------------------------------------------
+  # Fase 3 — Apache Kafka 4.1 en modo KRaft (sin Zookeeper)
+  # ---------------------------------------------------------------------------
+  kafka:
+    image: apache/kafka:4.1.2
+    container_name: matricula-kafka
+    hostname: kafka
+    profiles: ["kafka", "kafka-ui", "streaming", "todo"]
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      CLUSTER_ID: "MkU3OEVBNTcwNTJENDM2Qk"
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_LISTENERS: EXTERNO://:9092,INTERNO://:19092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: EXTERNO://localhost:9092,INTERNO://kafka:19092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: EXTERNO:PLAINTEXT,INTERNO:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNO
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+      KAFKA_HEAP_OPTS: "-Xms256m -Xmx512m"
+    volumes:
+      - kafka-data:/var/lib/kafka/data
+    mem_limit: 900m
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:9092 > /dev/null 2>&1"]
+      interval: 10s
+      timeout: 10s
+      retries: 12
+      start_period: 20s
+    restart: unless-stopped
+
+  kafka-ui:
+    image: ghcr.io/kafbat/kafka-ui:latest
+    container_name: matricula-kafka-ui
+    profiles: ["kafka-ui"]
+    ports:
+      - "8080:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: pipeline-matricula-es
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:19092
+      JAVA_OPTS: "-Xms128m -Xmx384m"
+    mem_limit: 512m
+    depends_on:
+      kafka:
+        condition: service_healthy
+
+  # ---------------------------------------------------------------------------
+  # Fase 4 — Apache Hadoop HDFS 3.4.1 (NameNode + DataNode)
+  # Interfaz web: http://localhost:9870
+  # ---------------------------------------------------------------------------
+  namenode:
+    image: apache/hadoop:3.4.1
+    container_name: matricula-namenode
+    hostname: namenode
+    profiles: ["hdfs", "hive", "todo"]
+    user: root
+    command: ["hdfs", "namenode"]
+    env_file: hadoop.env
+    environment:
+      ENSURE_NAMENODE_DIR: /hadoop/dfs/name
+      HADOOP_HEAPSIZE_MAX: 384m
+    ports:
+      - "9870:9870"
+      - "8020:8020"
+    volumes:
+      - hdfs-namenode:/hadoop/dfs
+    mem_limit: 640m
+    healthcheck:
+      test: ["CMD-SHELL", "hdfs dfsadmin -safemode get 2>/dev/null | grep -q OFF"]
+      interval: 10s
+      timeout: 15s
+      retries: 15
+      start_period: 25s
+    restart: unless-stopped
+
+  datanode:
+    image: apache/hadoop:3.4.1
+    container_name: matricula-datanode
+    hostname: datanode
+    profiles: ["hdfs", "hive", "todo"]
+    user: root
+    command: ["hdfs", "datanode"]
+    env_file: hadoop.env
+    environment:
+      HADOOP_HEAPSIZE_MAX: 384m
+    ports:
+      - "9864:9864"
+    volumes:
+      - hdfs-datanode:/hadoop/dfs
+    mem_limit: 640m
+    depends_on:
+      - namenode
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # Fase 4b, 5, 6, 7 y 8 — Apache Spark 4.0.2 (PySpark + Structured Streaming)
+  # ---------------------------------------------------------------------------
+  spark:
+    <<: *spark-base
+    command:
+      - /opt/spark/bin/spark-submit
+      - --master
+      - local[2]
+      - --driver-memory
+      - 1500m
+      - --conf
+      - spark.hadoop.dfs.replication=1
+      - procesamiento/curar.py
+
+  spark-mapreduce:
+    <<: *spark-base
+    command:
+      - /opt/spark/bin/spark-submit
+      - --master
+      - local[2]
+      - --driver-memory
+      - 1g
+      - mapreduce/comparar_spark.py
+
+  spark-streaming:
+    <<: *spark-base
+    profiles: ["spark"]
+    command:
+      - /opt/spark/bin/spark-submit
+      - --master
+      - local[2]
+      - --driver-memory
+      - 1500m
+      - --jars
+      - /proyecto/jars/postgresql-42.7.4.jar,/proyecto/jars/spark-sql-kafka-0-10_2.13-4.0.2.jar,/proyecto/jars/spark-token-provider-kafka-0-10_2.13-4.0.2.jar,/proyecto/jars/kafka-clients-3.9.1.jar,/proyecto/jars/commons-pool2-2.12.0.jar,/proyecto/jars/scala-parallel-collections_2.13-1.2.0.jar
+      - --conf
+      - spark.hadoop.dfs.replication=1
+      - streaming_spark/flujo_matricula.py
+
+  spark-servir:
+    <<: *spark-base
+    profiles: ["spark"]
+    command:
+      - /opt/spark/bin/spark-submit
+      - --master
+      - local[2]
+      - --driver-memory
+      - 1500m
+      - --jars
+      - /proyecto/jars/postgresql-42.7.4.jar
+      - procesamiento/servir.py
+
+  # ---------------------------------------------------------------------------
+  # Opcional (+2 pts) — Apache Hive 4.0.1 (tablas externas sobre Parquet HDFS)
+  # ---------------------------------------------------------------------------
+  hiveserver2:
+    image: apache/hive:4.0.1
+    container_name: matricula-hiveserver2
+    hostname: hiveserver2
+    profiles: ["hive"]
+    environment:
+      SERVICE_NAME: hiveserver2
+      HADOOP_HEAPSIZE: "768"
+      SERVICE_OPTS: "-Dhive.server2.enable.doAs=false"
+    ports:
+      - "10000:10000"
+      - "10002:10002"
+    volumes:
+      - .:/proyecto:ro
+    mem_limit: 1500m
+    depends_on:
+      namenode:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c 'echo > /dev/tcp/localhost/10000' 2>/dev/null"]
+      interval: 15s
+      timeout: 5s
+      retries: 20
+      start_period: 60s
+
+  # ---------------------------------------------------------------------------
+  # Fase 8 — PostgreSQL 17 (Zona de servicio para el tablero HTML / Power BI)
+  # ---------------------------------------------------------------------------
+  postgres:
+    image: postgres:17
+    container_name: matricula-postgres
+    hostname: postgres
+    profiles: ["postgres", "streaming", "todo", "airflow"]
+    environment:
+      POSTGRES_DB: matricula_es
+      POSTGRES_USER: pipeline
+      POSTGRES_PASSWORD: pipeline
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./postgres:/docker-entrypoint-initdb.d:ro
+    mem_limit: 512m
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pipeline -d matricula_es"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # Opcional (+3 pts) — Apache Airflow 3.3.2 standalone (http://localhost:8082)
+  # ---------------------------------------------------------------------------
+  airflow:
+    build: ./airflow
+    image: pipeline-matricula-es/airflow:3.3.2
+    container_name: matricula-airflow
+    profiles: ["airflow"]
+    user: "50000:0"
+    command: ["bash", "-c", "python /opt/airflow/crear_bd.py && exec airflow standalone"]
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://pipeline:pipeline@postgres:5432/airflow
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+      AIRFLOW__CORE__DAGS_FOLDER: /opt/airflow/dags
+      AIRFLOW__CORE__DEFAULT_TIMEZONE: America/Bogota
+      AIRFLOW__CORE__PARALLELISM: "4"
+      AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_ALL_ADMINS: "True"
+      TZ: America/Bogota
+      PYTHONPATH: /opt/proyecto
+      RAW_DIR: /opt/proyecto/data/raw
+      SALIDA_VISUALIZACION: /opt/proyecto/salida
+      KAFKA_BOOTSTRAP: kafka:19092
+      WEBHDFS_URL: http://namenode:9870
+      DATANODE_PUBLICO: ""
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: "5432"
+      POSTGRES_DB: matricula_es
+      POSTGRES_USER: pipeline
+      POSTGRES_PASSWORD: pipeline
+    ports:
+      - "8082:8080"
+    volumes:
+      - .:/opt/proyecto
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/crear_bd.py:/opt/airflow/crear_bd.py:ro
+      - airflow-logs:/opt/airflow/logs
+      - /var/run/docker.sock:/var/run/docker.sock
+    mem_limit: 1600m
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  spark-tareas:
+    <<: *spark-base
+    container_name: matricula-spark-tareas
+    profiles: ["airflow"]
+    command: ["sleep", "infinity"]
+    restart: unless-stopped
+
+volumes:
+  airflow-logs:
+  postgres-data:
+  kafka-data:
+  hdfs-namenode:
+  hdfs-datanode:
+  spark-ivy:

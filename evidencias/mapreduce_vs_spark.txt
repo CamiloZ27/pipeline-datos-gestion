@@ -1,0 +1,30 @@
+================================================================================
+EVIDENCIA FASE 4b — MAPREDUCE EN PYTHON vs. PYSPARK SOBRE DATOS RAW (HDFS)
+Estudiantes: Camilo Zuleta Delgado · Santiago Restrepo Silva
+================================================================================
+
+Comando: docker compose run --rm spark-mapreduce
+Origen:  hdfs://namenode:8020/datalake/raw/*/*/fecha_ingesta=*/*.jsonl
+
+Año    Sector     |    MR Regs Spark Regs |   MR Matric. Spark Matric. | Estado
+-------------------------------------------------------------------------------
+2015   Oficial    |     29,722     29,722 |    2,335,776     2,335,776 | OK
+2015   Privada    |     29,424     29,424 |    2,251,324     2,251,324 | OK
+2016   Oficial    |     31,364     31,364 |    2,389,394     2,389,394 | OK
+2016   Privada    |     30,674     30,674 |    2,399,474     2,399,474 | OK
+2017   Oficial    |     33,342     33,342 |    2,483,580     2,483,580 | OK
+2017   Privada    |     32,122     32,122 |    2,409,048     2,409,048 | OK
+2018   Oficial    |     34,322     34,322 |    2,484,964     2,484,964 | OK
+2018   Privada    |     29,782     29,782 |    2,395,770     2,395,770 | OK
+2019   Oficial    |     37,430     37,430 |    2,436,260     2,436,260 | OK
+2019   Privada    |     33,434     33,434 |    2,356,240     2,356,240 | OK
+2020   Oficial    |     18,660     18,660 |    1,203,895     1,203,895 | OK
+2020   Privada    |     16,065     16,065 |    1,151,708     1,151,708 | OK
+2021   Oficial    |     18,588     18,588 |    1,334,174     1,334,174 | OK
+2021   Privada    |     15,974     15,974 |    1,114,097     1,114,097 | OK
+-------------------------------------------------------------------------------
+TOTAL             |    390,903    390,903 |   28,745,704    28,745,704 | 0 DIFERENCIAS (EXACTO)
+
+Nota: En los datos raw los años 2015-2019 suman el doble porque la fuente oficial
+contiene registros duplicados 2x (160,821 duplicados), que se depuran en Fase 5.
+

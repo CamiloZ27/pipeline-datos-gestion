@@ -1,0 +1,9 @@
+{
+  "fuente": "datos_gov_co",
+  "dataset": "men_matricula_es",
+  "ultimo_anio": 2021,
+  "ultimo_semestre": 2,
+  "ultima_fecha_periodo": "2021-07-01",
+  "ultima_ingesta_utc": "2026-11-20T17:16:18Z",
+  "registros_ultima_ejecucion": 34562
+}

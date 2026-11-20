@@ -1,0 +1,70 @@
+================================================================================
+EVIDENCIA FASE 6 — IDEMPOTENCIA END-TO-END DEL PIPELINE (CORRIDA 1 VS CORRIDA 2)
+Estudiantes: Camilo Zuleta Delgado · Santiago Restrepo Silva
+Dataset: MEN_MATRICULA_ESTADISTICA_ES (datos.gov.co / 5wck-szir)
+================================================================================
+
+1) INGESTA INCREMENTAL POR MARCA DE AGUA (Fase 2 + Fase 6)
+   Archivo de estado: data/raw/_marca_agua.json
+   - Corrida 1 (histórica --hasta-anio 2020):
+       356,341 registros descargados (2015-1 a 2020-2)
+       Marca de agua actualizada -> anio=2020, semestre=2 (2020-07-01)
+   - Corrida 2 (incremental --incremental):
+       34,562 registros nuevos descargados (2021-1 y 2021-2)
+       Marca de agua actualizada -> anio=2021, semestre=2 (2021-07-01)
+   - Corrida 3 (re-ejecución --incremental sin novedades en la API):
+       0 registros nuevos descargados -> NO se crea archivo JSONL ni se sobrescribe el historial.
+   Total acumulado en raw: 356,341 + 34,562 = 390,903 registros.
+
+2) APACHE KAFKA — PRODUCTOR CON CHECKPOINT `.kafka_ok` (Fase 3)
+   - Corrida 1 (`python3 -m streaming producir`):
+       Publicados 390,903 mensajes en tópico `raw.datos_gov_co` (3 particiones, key = id_registro):
+         Partición 0: 129,914 | Partición 1: 130,021 | Partición 2: 130,968
+       Archivos marcados con `.kafka_ok`.
+   - Corrida 2 (`python3 -m streaming producir`):
+       0 mensajes publicados (`{}`). Los archivos con `.kafka_ok` se omiten automáticamente.
+
+3) HADOOP HDFS — CONSUMIDOR POR LOTES CON COMMIT MANUAL (Fase 4a)
+   - Corrida 1 (`python3 -m datalake consumir`):
+       390,903 mensajes escritos en 25 archivos por lote (11 lotes) en `/datalake/raw/datos_gov_co/men_matricula_es/fecha_ingesta=2026-11-20/`.
+       Nombres deterministas: `part-<topico>-p<particion>-o<offset_inicial>.jsonl`.
+       Commit de offsets solo DESPUÉS de confirmar escritura HTTP 201 en WebHDFS.
+   - Corrida 2 (`python3 -m datalake consumir`):
+       0 mensajes consumidos, 0 archivos nuevos.
+
+4) PYSPARK ZONA CURADA + VALIDACIONES AUTOMÁTICAS (Fase 5 + Fase 6)
+   - Estrategia: deduplicación por llave natural `id_registro` + `overwrite` determinista sobre `/datalake/curated/matricula_es` particionado por `anio`.
+   - Corrida 1 y Corrida 2 producen exactamente:
+       filas_raw_leidas      = 390,903
+       duplicados_eliminados = 160,821  (106,596 exactos + 54,225 ocultos por variación de comas)
+       registros_descartados =       0
+       filas_curadas         = 230,082
+       total_matriculados    = 16,773,503
+       validaciones_criticas = 5 / 5 APROBADAS (estado: APROBADO)
+
+5) SPARK STRUCTURED STREAMING — REINICIO CON CHECKPOINT (Fase 7)
+   - Checkpoint persistente: `data/checkpoints/stream_matricula`
+   - Watermark: 5 minutes | Ventana: 10 minutes | Deduplicación: `dropDuplicatesWithinWatermark(["id_registro"])`
+   - Corrida 1 (2026-11-20T18:50:58Z, 19.5 s):
+       lotes_nuevos_procesados = 1
+       filas_ventana_total     = 47
+       registros_unicos_total  = 230,082
+       total_matriculados      = 16,773,503
+   - Corrida 2 tras reiniciar el proceso (2026-11-20T18:52:14Z, 4.6 s):
+       lotes_nuevos_procesados = 0
+       filas_ventana_total     = 47
+       registros_unicos_total  = 230,082
+       total_matriculados      = 16,773,503
+   -> 0 mensajes reprocesados, 0 duplicados y reconciliación 100% exacta con la capa Batch en los 7 años (2015–2021).
+
+6) POSTGRESQL ZONA DE SERVICIO — CARGA `TRUNCATE` + INSERT TRANSACCIONAL (Fase 8a)
+   - Corrida 1 (`docker compose run --rm spark-servir`) vs Corrida 2 (`docker compose run --rm spark-servir`):
+       servicio.indicador_evolucion_semestral :   14 filas (antes y después)
+       servicio.indicador_departamentos       :  231 filas (antes y después)
+       servicio.indicador_sector_metodologia  :   66 filas (antes y después)
+       servicio.indicador_areas_genero        :  116 filas (antes y después)
+       servicio.indicador_top_ies             : 2,223 filas (antes y después)
+       servicio.metadatos_pipeline            :    1 fila  (antes y después)
+       servicio.stream_ventanas               :   47 filas (antes y después)
+   -> Sin filas duplicadas al re-ejecutar el pipeline completo.
+

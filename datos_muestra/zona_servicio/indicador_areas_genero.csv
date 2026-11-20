@@ -1,0 +1,117 @@
+anio,area_nombre,genero_nombre,total_matriculados,total_programas
+2015,"Agronomía, Veterinaria y Afines",Femenino,20674,207
+2015,"Agronomía, Veterinaria y Afines",Masculino,24586,209
+2015,Bellas Artes,Femenino,36783,405
+2015,Bellas Artes,Masculino,39898,396
+2015,Ciencias Sociales y Humanas,Femenino,231863,1572
+2015,Ciencias Sociales y Humanas,Masculino,146192,1599
+2015,Ciencias de la Educación,Femenino,120992,795
+2015,Ciencias de la Educación,Masculino,71887,770
+2015,Ciencias de la Salud,Femenino,111913,1003
+2015,Ciencias de la Salud,Masculino,49609,1011
+2015,"Economía, Administración, Contaduría y Afines",Femenino,460486,2493
+2015,"Economía, Administración, Contaduría y Afines",Masculino,284581,2484
+2015,"Ingeniería, Arquitectura, Urbanismo y Afines",Femenino,209646,2109
+2015,"Ingeniería, Arquitectura, Urbanismo y Afines",Masculino,439687,2248
+2015,Matemáticas y Ciencias Naturales,Femenino,21644,340
+2015,Matemáticas y Ciencias Naturales,Masculino,23109,348
+2016,"Agronomía, Veterinaria y Afines",Femenino,20902,219
+2016,"Agronomía, Veterinaria y Afines",Masculino,24508,225
+2016,Bellas Artes,Femenino,37286,456
+2016,Bellas Artes,Masculino,41105,446
+2016,Ciencias Sociales y Humanas,Femenino,250762,1685
+2016,Ciencias Sociales y Humanas,Masculino,156323,1694
+2016,Ciencias de la Educación,Femenino,127760,857
+2016,Ciencias de la Educación,Masculino,74253,826
+2016,Ciencias de la Salud,Femenino,112736,1043
+2016,Ciencias de la Salud,Masculino,50143,1061
+2016,"Economía, Administración, Contaduría y Afines",Femenino,480460,2682
+2016,"Economía, Administración, Contaduría y Afines",Masculino,300642,2690
+2016,"Ingeniería, Arquitectura, Urbanismo y Afines",Femenino,213624,2300
+2016,"Ingeniería, Arquitectura, Urbanismo y Afines",Masculino,456729,2434
+2016,Matemáticas y Ciencias Naturales,Femenino,22590,368
+2016,Matemáticas y Ciencias Naturales,Masculino,24611,376
+2017,"Agronomía, Veterinaria y Afines",Femenino,22025,223
+2017,"Agronomía, Veterinaria y Afines",Masculino,25207,230
+2017,Bellas Artes,Femenino,37263,491
+2017,Bellas Artes,Masculino,40662,484
+2017,Ciencias Sociales y Humanas,Femenino,262539,1790
+2017,Ciencias Sociales y Humanas,Masculino,159513,1796
+2017,Ciencias de la Educación,Femenino,128442,932
+2017,Ciencias de la Educación,Masculino,75739,909
+2017,Ciencias de la Salud,Femenino,115074,1053
+2017,Ciencias de la Salud,Masculino,51261,1064
+2017,"Economía, Administración, Contaduría y Afines",Femenino,491509,2742
+2017,"Economía, Administración, Contaduría y Afines",Masculino,309780,2752
+2017,"Ingeniería, Arquitectura, Urbanismo y Afines",Femenino,214602,2334
+2017,"Ingeniería, Arquitectura, Urbanismo y Afines",Masculino,464359,2491
+2017,Matemáticas y Ciencias Naturales,Femenino,23100,394
+2017,Matemáticas y Ciencias Naturales,Masculino,25239,403
+2018,"Agronomía, Veterinaria y Afines",Femenino,23588,280
+2018,"Agronomía, Veterinaria y Afines",Masculino,25676,280
+2018,Bellas Artes,Femenino,37573,516
+2018,Bellas Artes,Masculino,40853,503
+2018,Ciencias Sociales y Humanas,Femenino,273280,1840
+2018,Ciencias Sociales y Humanas,Masculino,162231,1846
+2018,Ciencias de la Educación,Femenino,121964,1017
+2018,Ciencias de la Educación,Masculino,75219,989
+2018,Ciencias de la Salud,Femenino,117443,1132
+2018,Ciencias de la Salud,Masculino,52386,1138
+2018,"Economía, Administración, Contaduría y Afines",Femenino,483510,2897
+2018,"Economía, Administración, Contaduría y Afines",Masculino,311479,2906
+2018,"Ingeniería, Arquitectura, Urbanismo y Afines",Femenino,211668,2453
+2018,"Ingeniería, Arquitectura, Urbanismo y Afines",Masculino,454595,2613
+2018,Matemáticas y Ciencias Naturales,Femenino,23450,414
+2018,Matemáticas y Ciencias Naturales,Masculino,25448,421
+2019,"Agronomía, Veterinaria y Afines",Femenino,23941,303
+2019,"Agronomía, Veterinaria y Afines",Masculino,25351,306
+2019,Bellas Artes,Femenino,37234,529
+2019,Bellas Artes,Masculino,39826,533
+2019,Ciencias Sociales y Humanas,Femenino,278845,1956
+2019,Ciencias Sociales y Humanas,Masculino,168433,1964
+2019,Ciencias de la Educación,Femenino,112479,1063
+2019,Ciencias de la Educación,Masculino,70759,1029
+2019,Ciencias de la Salud,Femenino,119008,1174
+2019,Ciencias de la Salud,Masculino,54220,1160
+2019,"Economía, Administración, Contaduría y Afines",Femenino,462029,3060
+2019,"Economía, Administración, Contaduría y Afines",Masculino,302860,3048
+2019,"Ingeniería, Arquitectura, Urbanismo y Afines",Femenino,205377,2634
+2019,"Ingeniería, Arquitectura, Urbanismo y Afines",Masculino,447293,2821
+2019,Matemáticas y Ciencias Naturales,Femenino,23596,423
+2019,Matemáticas y Ciencias Naturales,Masculino,24999,440
+2020,"Agronomía, Veterinaria y Afines",Femenino,23932,294
+2020,"Agronomía, Veterinaria y Afines",Masculino,24062,296
+2020,Bellas Artes,Femenino,37454,549
+2020,Bellas Artes,Masculino,38400,552
+2020,Ciencias Sociales y Humanas,Femenino,274855,1980
+2020,Ciencias Sociales y Humanas,Masculino,168282,1995
+2020,Ciencias de la Educación,Femenino,111738,1066
+2020,Ciencias de la Educación,Masculino,69687,1047
+2020,Ciencias de la Salud,Femenino,120496,1165
+2020,Ciencias de la Salud,Masculino,55561,1173
+2020,"Economía, Administración, Contaduría y Afines",Femenino,452902,3102
+2020,"Economía, Administración, Contaduría y Afines",Masculino,297768,3094
+2020,"Ingeniería, Arquitectura, Urbanismo y Afines",Femenino,195093,2688
+2020,"Ingeniería, Arquitectura, Urbanismo y Afines",Masculino,426209,2861
+2020,Matemáticas y Ciencias Naturales,Femenino,23315,427
+2020,Matemáticas y Ciencias Naturales,Masculino,23252,437
+2020,Sin clasificar,Femenino,7644,62
+2020,Sin clasificar,Masculino,4503,62
+2021,"Agronomía, Veterinaria y Afines",Femenino,26377,273
+2021,"Agronomía, Veterinaria y Afines",Masculino,23832,273
+2021,Bellas Artes,Femenino,38624,551
+2021,Bellas Artes,Masculino,35803,537
+2021,Ciencias Sociales y Humanas,Femenino,274216,2051
+2021,Ciencias Sociales y Humanas,Masculino,166980,2037
+2021,Ciencias de la Educación,Femenino,117081,1075
+2021,Ciencias de la Educación,Masculino,70909,1040
+2021,Ciencias de la Salud,Femenino,126384,1188
+2021,Ciencias de la Salud,Masculino,57479,1174
+2021,"Economía, Administración, Contaduría y Afines",Femenino,465669,3110
+2021,"Economía, Administración, Contaduría y Afines",Masculino,302487,3088
+2021,"Ingeniería, Arquitectura, Urbanismo y Afines",Femenino,206333,2694
+2021,"Ingeniería, Arquitectura, Urbanismo y Afines",Masculino,438232,2855
+2021,Matemáticas y Ciencias Naturales,Femenino,25837,427
+2021,Matemáticas y Ciencias Naturales,Masculino,25072,436
+2021,Sin clasificar,Femenino,26203,464
+2021,Sin clasificar,Masculino,19921,472

@@ -1,0 +1,18 @@
+{
+  "fuente": "datos_gov_co",
+  "dataset": "men_matricula_es",
+  "fecha_ingesta": "2026-11-20T17:05:12Z",
+  "url": "https://www.datos.gov.co/resource/5wck-szir.json",
+  "parametros": {
+    "desde_anio": null,
+    "desde_semestre": null,
+    "hasta_anio": 2020,
+    "hasta_semestre": null,
+    "incremental": false,
+    "estrictamente_mayor": false,
+    "tamano_pagina": 50000
+  },
+  "registros": 356341,
+  "archivo": "men_matricula_es_20261120T170512Z.jsonl",
+  "bytes": 383753395
+}

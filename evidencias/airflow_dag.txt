@@ -1,0 +1,57 @@
+================================================================================
+EVIDENCIA COMPONENTE OPCIONAL (+3 PTS) — APACHE AIRFLOW 3.3.2
+Orquestación End-to-End del Pipeline Lambda (DAG de 11 tareas)
+Estudiantes: Camilo Zuleta Delgado · Santiago Restrepo Silva
+================================================================================
+
+1) CONSTRUCCIÓN DE IMAGEN Y MIGRACIÓN DE METADATOS EN POSTGRESQL
+   Imagen: pipeline-matricula-es/airflow:3.3.2 (apache/airflow:3.3.2-python3.12 + requisitos del proyecto)
+   Comando: docker compose run --rm --no-deps airflow bash -c "python /opt/airflow/crear_bd.py && airflow db migrate"
+   Resultado:
+     Base de datos 'airflow' creada.
+     Database migration done! (postgresql+psycopg2://pipeline:***@postgres:5432/airflow)
+
+2) REGISTRO Y VALIDACIÓN DEL DAG (`airflow dags reserialize && airflow dags list-import-errors`)
+   Errores de importación (`airflow dags list-import-errors`):
+     No data found   (0 errores de sintaxis o importación)
+
+   DAGs registrados (`airflow dags list`):
+     dag_id                         | fileloc                                     | owners                          | is_paused
+     ===============================+=============================================+=================================+==========
+     matricula_es_pipeline_completo | /opt/airflow/dags/matricula_pipeline_dag.py | camilo_zuleta_santiago_restrepo | True
+
+3) DETALLE DEL DAG (`airflow dags details matricula_es_pipeline_completo`)
+   - description:       Ingesta incremental -> Kafka -> HDFS -> MapReduce -> PySpark -> Streaming -> PostgreSQL -> Dashboard
+   - timetable_summary: 0 6 * * 1  (At 06:00, only on Monday · Zona America/Bogota)
+   - max_active_runs:   1
+   - has_import_errors: False
+   - retries por tarea: 2 (3 en ingesta_incremental) con retry_delay = 2 minutos
+   - tags:              ['lambda', 'matricula-es', 'pascual-bravo']
+
+4) TAREAS DEL DAG (`airflow tasks list matricula_es_pipeline_completo`) — 11 TAREAS
+   1. ingesta_incremental     (descarga incremental SODA2 por marca de agua, retries=3)
+   2. encender_kafka_hdfs     (enciende matricula-kafka, matricula-namenode, matricula-datanode)
+   3. kafka_producir          (crea tópico 3 particiones + publica nuevos JSONL con .kafka_ok)
+   4. hdfs_consumir           (consumidor por lotes hacia WebHDFS con commit manual)
+   5. spark_streaming_lambda  (capa de velocidad: Kafka -> watermark/ventana/checkpoint -> PG)
+   6. apagar_kafka            (libera RAM tras terminar consumo, trigger_rule="all_done")
+   7. mapreduce_vs_spark      (validación cruzada MapReduce Python vs PySpark sobre raw)
+   8. spark_curar_y_calidad   (curación Parquet particionado + 5 validaciones fail-fast)
+   9. spark_servir_postgres   (carga idempotente a esquema servicio.* en PostgreSQL)
+  10. apagar_hdfs             (libera RAM tras terminar zona de servicio, trigger_rule="all_done")
+  11. generar_dashboard       (regenera salida/dashboard.html y docs/index.html desde PG)
+
+   Grafo de dependencias (Arquitectura Lambda):
+     ingesta_incremental >> encender_kafka_hdfs >> kafka_producir >> [hdfs_consumir, spark_streaming_lambda]
+     [hdfs_consumir, spark_streaming_lambda] >> apagar_kafka
+     hdfs_consumir >> mapreduce_vs_spark >> spark_curar_y_calidad >> spark_servir_postgres >> apagar_hdfs
+     [spark_servir_postgres, spark_streaming_lambda] >> generar_dashboard
+
+5) EJECUCIÓN VERIFICADA DE TAREA DEL DAG (`airflow tasks test matricula_es_pipeline_completo generar_dashboard 2026-11-20`)
+   2026-11-20T19:30:34.363Z [info] [DAG TEST] starting task_id=generar_dashboard
+   2026-11-20T19:30:37.672Z [info] Done. Returned value was: /opt/proyecto/salida/dashboard.html
+   2026-11-20T19:30:37.696Z [info] Task instance state updated ... new_state=success rows_affected=1
+   2026-11-20T19:30:37.705Z [info] [DAG TEST] end task task_id=generar_dashboard
+
+   Interfaz web disponible al encender el perfil airflow: http://localhost:8082
+
