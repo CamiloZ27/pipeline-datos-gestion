@@ -36,6 +36,36 @@
         "total_matriculados": 16773503
       },
       "duracion_s": 4.6
+    },
+    {
+      "timestamp_utc": "2026-11-25T20:53:09Z",
+      "origen": "kafka",
+      "watermark": "5 minutes",
+      "ventana": "10 minutes",
+      "checkpoint": "data/checkpoints/stream_matricula",
+      "lotes_nuevos_procesados": 0,
+      "detalle_lotes": [],
+      "estado_acumulado": {
+        "filas_ventana_total": 47,
+        "registros_unicos_total": 230082,
+        "total_matriculados": 16773503
+      },
+      "duracion_s": 5.4
+    },
+    {
+      "timestamp_utc": "2026-11-25T20:53:16Z",
+      "origen": "kafka",
+      "watermark": "5 minutes",
+      "ventana": "10 minutes",
+      "checkpoint": "data/checkpoints/stream_matricula",
+      "lotes_nuevos_procesados": 0,
+      "detalle_lotes": [],
+      "estado_acumulado": {
+        "filas_ventana_total": 47,
+        "registros_unicos_total": 230082,
+        "total_matriculados": 16773503
+      },
+      "duracion_s": 5.0
     }
   ]
 }

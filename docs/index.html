@@ -156,7 +156,7 @@
       <div class="meta-bar">
         <span><strong>Fuente oficial:</strong> Ministerio de Educación Nacional (SNIES) — MEN_MATRICULA_ESTADISTICA_ES (datos.gov.co, dataset 5wck-szir)</span>
         <span><strong>Corte de cifras:</strong> Periodos 2015-1 a 2021-2 (fecha máx. 2021-07-01)</span>
-        <span><strong>Actualizado:</strong> 2026-11-20 19:21 UTC</span>
+        <span><strong>Actualizado:</strong> 2026-11-25 20:53 UTC</span>
         
         <span class="badge">160.821 duplicados oficiales depurados en PySpark</span>
         
@@ -166,23 +166,23 @@
     <section class="kpis">
       <div class="kpi">
         <div class="kpi-label">Matrícula Colombia (2021-1)</div>
-        <div class="kpi-value" id="kpi-col">—</div>
-        <div class="kpi-sub">Variación vs. 2015-1: <span class="up">+6.8 %</span> · 338 IES</div>
+        <div class="kpi-value" id="kpi-col">1.994.383</div>
+        <div class="kpi-sub">Variación vs. 2015-1: <span class="up">+6,8 %</span> · 338 IES</div>
       </div>
       <div class="kpi">
         <div class="kpi-label">Antioquia (2021-1)</div>
-        <div class="kpi-value" id="kpi-ant">—</div>
-        <div class="kpi-sub"><span class="hl">13.41 %</span> del total nacional (+9.4 % vs. 2015-1)</div>
+        <div class="kpi-value" id="kpi-ant">267.463</div>
+        <div class="kpi-sub"><span class="hl">13,41 %</span> del total nacional (+9,4 % vs. 2015-1)</div>
       </div>
       <div class="kpi">
         <div class="kpi-label">Educación Virtual (2021-1)</div>
-        <div class="kpi-value">11.94 %</div>
-        <div class="kpi-sub">Crecimiento 2015–2021: <span class="up">+274.7 %</span> en estudiantes</div>
+        <div class="kpi-value">11,94 %</div>
+        <div class="kpi-sub">Crecimiento 2015–2021: <span class="up">+274,7 %</span> en estudiantes</div>
       </div>
       <div class="kpi">
         <div class="kpi-label">Participación Femenina &amp; Sector Oficial</div>
-        <div class="kpi-value">53.84 %</div>
-        <div class="kpi-sub">Mujeres matriculadas · Sector Oficial: <span class="hl">44.2 %</span></div>
+        <div class="kpi-value">53,84 %</div>
+        <div class="kpi-sub">Mujeres matriculadas · Sector Oficial: <span class="hl">44,2 %</span></div>
       </div>
     </section>
 
@@ -384,56 +384,129 @@ module.exports = {
 
 Plotly.register(module.exports);})();</script>
   <script>
-    const D = {"meta":{"fuente_cita":"Ministerio de Educación Nacional (SNIES) — MEN_MATRICULA_ESTADISTICA_ES (datos.gov.co, dataset 5wck-szir)","url_fuente":"https://www.datos.gov.co/d/5wck-szir","fecha_ejecucion_utc":"2026-11-20 19:21 UTC","fecha_desde":"2015-01-01","fecha_hasta":"2021-07-01","anio_desde":2015,"anio_hasta":2021,"filas_curadas":230082,"total_matriculados_acum":16773503,"ies_unicas":338,"programas_unicos":15526,"departamentos_unicos":33},"titulo_respuesta":"La educación superior en Colombia alcanzó 1.994.383 matriculados en 2021-1: la virtualidad creció +274.7% y Antioquia concentró el 13.41% del país","kpi":{"periodo_corte":"2021-1","matriculados_colombia":1994383,"variacion_colombia_pct":6.8,"matriculados_antioquia":267463,"pct_antioquia":13.41,"variacion_antioquia_pct":9.4,"pct_virtual":11.94,"crec_virtual_pct":274.7,"pct_femenino":53.84,"pct_oficial":44.2,"ies_unicas":338,"programas_unicos":15526,"duplicados_corregidos":160821,"compresion_parquet_x":70.92},"evolucion_sem1":[{"anio":2015,"semestre":1,"fecha_periodo":"2015-01-01","total_matriculados":1867703,"matriculados_antioquia":244511,"matriculados_oficial":742041,"matriculados_privada":1125662,"matriculados_virtual":63569,"matriculados_femenino":995728,"matriculados_masculino":871975,"total_ies":314,"total_programas":9148,"registros":25727,"periodo_label":"2015-1","pct_antioquia":13.09,"pct_virtual":3.4,"pct_femenino":53.31},{"anio":2016,"semestre":1,"fecha_periodo":"2016-01-01","total_matriculados":1963744,"matriculados_antioquia":254312,"matriculados_oficial":764007,"matriculados_privada":1199737,"matriculados_virtual":92458,"matriculados_femenino":1048967,"matriculados_masculino":914777,"total_ies":319,"total_programas":9851,"registros":27180,"periodo_label":"2016-1","pct_antioquia":12.95,"pct_virtual":4.71,"pct_femenino":53.42},{"anio":2017,"semestre":1,"fecha_periodo":"2017-01-01","total_matriculados":1978671,"matriculados_antioquia":257231,"matriculados_oficial":774147,"matriculados_privada":1204524,"matriculados_virtual":109991,"matriculados_femenino":1060448,"matriculados_masculino":918223,"total_ies":311,"total_programas":10239,"registros":28728,"periodo_label":"2017-1","pct_antioquia":13.0,"pct_virtual":5.56,"pct_femenino":53.59},{"anio":2018,"semestre":1,"fecha_periodo":"2018-01-01","total_matriculados":1976710,"matriculados_antioquia":263021,"matriculados_oficial":778829,"matriculados_privada":1197881,"matriculados_virtual":128986,"matriculados_femenino":1060844,"matriculados_masculino":915866,"total_ies":313,"total_programas":10555,"registros":27392,"periodo_label":"2018-1","pct_antioquia":13.31,"pct_virtual":6.53,"pct_femenino":53.67},{"anio":2019,"semestre":1,"fecha_periodo":"2019-01-01","total_matriculados":1965141,"matriculados_antioquia":259759,"matriculados_oficial":787021,"matriculados_privada":1178120,"matriculados_virtual":150902,"matriculados_femenino":1048492,"matriculados_masculino":916649,"total_ies":315,"total_programas":10925,"registros":30200,"periodo_label":"2019-1","pct_antioquia":13.22,"pct_virtual":7.68,"pct_femenino":53.35},{"anio":2020,"semestre":1,"fecha_periodo":"2020-01-01","total_matriculados":1930613,"matriculados_antioquia":251151,"matriculados_oficial":778911,"matriculados_privada":1151702,"matriculados_virtual":179958,"matriculados_femenino":1030996,"matriculados_masculino":899617,"total_ies":317,"total_programas":10901,"registros":29492,"periodo_label":"2020-1","pct_antioquia":13.01,"pct_virtual":9.32,"pct_femenino":53.4},{"anio":2021,"semestre":1,"fecha_periodo":"2021-01-01","total_matriculados":1994383,"matriculados_antioquia":267463,"matriculados_oficial":880728,"matriculados_privada":1113655,"matriculados_virtual":238209,"matriculados_femenino":1073737,"matriculados_masculino":920646,"total_ies":324,"total_programas":11351,"registros":30716,"periodo_label":"2021-1","pct_antioquia":13.41,"pct_virtual":11.94,"pct_femenino":53.84}],"evolucion_completa":[{"anio":2015,"semestre":1,"fecha_periodo":"2015-01-01","total_matriculados":1867703,"matriculados_antioquia":244511,"matriculados_oficial":742041,"matriculados_privada":1125662,"matriculados_virtual":63569,"matriculados_femenino":995728,"matriculados_masculino":871975,"total_ies":314,"total_programas":9148,"registros":25727,"periodo_label":"2015-1","pct_antioquia":13.09,"pct_virtual":3.4,"pct_femenino":53.31},{"anio":2015,"semestre":2,"fecha_periodo":"2015-07-01","total_matriculados":425847,"matriculados_antioquia":70900,"matriculados_oficial":425847,"matriculados_privada":0,"matriculados_virtual":0,"matriculados_femenino":218273,"matriculados_masculino":207574,"total_ies":1,"total_programas":138,"registros":3846,"periodo_label":"2015-2","pct_antioquia":16.65,"pct_virtual":0.0,"pct_femenino":51.26},{"anio":2016,"semestre":1,"fecha_periodo":"2016-01-01","total_matriculados":1963744,"matriculados_antioquia":254312,"matriculados_oficial":764007,"matriculados_privada":1199737,"matriculados_virtual":92458,"matriculados_femenino":1048967,"matriculados_masculino":914777,"total_ies":319,"total_programas":9851,"registros":27180,"periodo_label":"2016-1","pct_antioquia":12.95,"pct_virtual":4.71,"pct_femenino":53.42},{"anio":2016,"semestre":2,"fecha_periodo":"2016-07-01","total_matriculados":430690,"matriculados_antioquia":71171,"matriculados_oficial":430690,"matriculados_privada":0,"matriculados_virtual":33965,"matriculados_femenino":217153,"matriculados_masculino":213537,"total_ies":1,"total_programas":142,"registros":3839,"periodo_label":"2016-2","pct_antioquia":16.52,"pct_virtual":7.89,"pct_femenino":50.42},{"anio":2017,"semestre":1,"fecha_periodo":"2017-01-01","total_matriculados":1978671,"matriculados_antioquia":257231,"matriculados_oficial":774147,"matriculados_privada":1204524,"matriculados_virtual":109991,"matriculados_femenino":1060448,"matriculados_masculino":918223,"total_ies":311,"total_programas":10239,"registros":28728,"periodo_label":"2017-1","pct_antioquia":13.0,"pct_virtual":5.56,"pct_femenino":53.59},{"anio":2017,"semestre":2,"fecha_periodo":"2017-07-01","total_matriculados":467643,"matriculados_antioquia":77385,"matriculados_oficial":467643,"matriculados_privada":0,"matriculados_virtual":59240,"matriculados_femenino":234106,"matriculados_masculino":233537,"total_ies":1,"total_programas":143,"registros":4004,"periodo_label":"2017-2","pct_antioquia":16.55,"pct_virtual":12.67,"pct_femenino":50.06},{"anio":2018,"semestre":1,"fecha_periodo":"2018-01-01","total_matriculados":1976710,"matriculados_antioquia":263021,"matriculados_oficial":778829,"matriculados_privada":1197881,"matriculados_virtual":128986,"matriculados_femenino":1060844,"matriculados_masculino":915866,"total_ies":313,"total_programas":10555,"registros":27392,"periodo_label":"2018-1","pct_antioquia":13.31,"pct_virtual":6.53,"pct_femenino":53.67},{"anio":2018,"semestre":2,"fecha_periodo":"2018-07-01","total_matriculados":463653,"matriculados_antioquia":77359,"matriculados_oficial":463653,"matriculados_privada":0,"matriculados_virtual":71184,"matriculados_femenino":231632,"matriculados_masculino":232021,"total_ies":1,"total_programas":435,"registros":4656,"periodo_label":"2018-2","pct_antioquia":16.68,"pct_virtual":15.35,"pct_femenino":49.96},{"anio":2019,"semestre":1,"fecha_periodo":"2019-01-01","total_matriculados":1965141,"matriculados_antioquia":259759,"matriculados_oficial":787021,"matriculados_privada":1178120,"matriculados_virtual":150902,"matriculados_femenino":1048492,"matriculados_masculino":916649,"total_ies":315,"total_programas":10925,"registros":30200,"periodo_label":"2019-1","pct_antioquia":13.22,"pct_virtual":7.68,"pct_femenino":53.35},{"anio":2019,"semestre":2,"fecha_periodo":"2019-07-01","total_matriculados":431109,"matriculados_antioquia":72023,"matriculados_oficial":431109,"matriculados_privada":0,"matriculados_virtual":70723,"matriculados_femenino":214017,"matriculados_masculino":217092,"total_ies":1,"total_programas":702,"registros":5232,"periodo_label":"2019-2","pct_antioquia":16.71,"pct_virtual":16.4,"pct_femenino":49.64},{"anio":2020,"semestre":1,"fecha_periodo":"2020-01-01","total_matriculados":1930613,"matriculados_antioquia":251151,"matriculados_oficial":778911,"matriculados_privada":1151702,"matriculados_virtual":179958,"matriculados_femenino":1030996,"matriculados_masculino":899617,"total_ies":317,"total_programas":10901,"registros":29492,"periodo_label":"2020-1","pct_antioquia":13.01,"pct_virtual":9.32,"pct_femenino":53.4},{"anio":2020,"semestre":2,"fecha_periodo":"2020-07-01","total_matriculados":424540,"matriculados_antioquia":69311,"matriculados_oficial":424540,"matriculados_privada":0,"matriculados_virtual":71425,"matriculados_femenino":216433,"matriculados_masculino":208107,"total_ies":1,"total_programas":922,"registros":5229,"periodo_label":"2020-2","pct_antioquia":16.33,"pct_virtual":16.82,"pct_femenino":50.98},{"anio":2021,"semestre":1,"fecha_periodo":"2021-01-01","total_matriculados":1994383,"matriculados_antioquia":267463,"matriculados_oficial":880728,"matriculados_privada":1113655,"matriculados_virtual":238209,"matriculados_femenino":1073737,"matriculados_masculino":920646,"total_ies":324,"total_programas":11351,"registros":30716,"periodo_label":"2021-1","pct_antioquia":13.41,"pct_virtual":11.94,"pct_femenino":53.84},{"anio":2021,"semestre":2,"fecha_periodo":"2021-07-01","total_matriculados":453056,"matriculados_antioquia":52894,"matriculados_oficial":453056,"matriculados_privada":0,"matriculados_virtual":136795,"matriculados_femenino":232987,"matriculados_masculino":220069,"total_ies":1,"total_programas":939,"registros":3841,"periodo_label":"2021-2","pct_antioquia":11.67,"pct_virtual":30.19,"pct_femenino":51.43}],"top_deptos":[{"anio":2021,"cod_depto_oferta":"11","departamento_oferta":"Bogotá D.C.","total_matriculados":833565,"matriculados_sem1":618804,"matriculados_oficial":339169,"matriculados_virtual":267661,"total_ies":134,"total_programas":3878,"es_antioquia":false,"participacion_nacional_pct":34.06,"pct_oficial":40.69},{"anio":2021,"cod_depto_oferta":"05","departamento_oferta":"Antioquia","total_matriculados":320357,"matriculados_sem1":267463,"matriculados_oficial":188775,"matriculados_virtual":24570,"total_ies":74,"total_programas":2042,"es_antioquia":true,"participacion_nacional_pct":13.09,"pct_oficial":58.93},{"anio":2021,"cod_depto_oferta":"76","departamento_oferta":"Valle del Cauca","total_matriculados":170683,"matriculados_sem1":146672,"matriculados_oficial":92586,"matriculados_virtual":6736,"total_ies":61,"total_programas":1253,"es_antioquia":false,"participacion_nacional_pct":6.97,"pct_oficial":54.24},{"anio":2021,"cod_depto_oferta":"08","departamento_oferta":"Atlántico","total_matriculados":128905,"matriculados_sem1":112256,"matriculados_oficial":47657,"matriculados_virtual":3429,"total_ies":39,"total_programas":863,"es_antioquia":false,"participacion_nacional_pct":5.27,"pct_oficial":36.97},{"anio":2021,"cod_depto_oferta":"68","departamento_oferta":"Santander","total_matriculados":122611,"matriculados_sem1":109725,"matriculados_oficial":66310,"matriculados_virtual":18977,"total_ies":39,"total_programas":838,"es_antioquia":false,"participacion_nacional_pct":5.01,"pct_oficial":54.08},{"anio":2021,"cod_depto_oferta":"54","departamento_oferta":"Norte de Santander","total_matriculados":71972,"matriculados_sem1":63365,"matriculados_oficial":60094,"matriculados_virtual":2204,"total_ies":24,"total_programas":442,"es_antioquia":false,"participacion_nacional_pct":2.94,"pct_oficial":83.5},{"anio":2021,"cod_depto_oferta":"25","departamento_oferta":"Cundinamarca","total_matriculados":81933,"matriculados_sem1":62659,"matriculados_oficial":57097,"matriculados_virtual":5775,"total_ies":29,"total_programas":448,"es_antioquia":false,"participacion_nacional_pct":3.35,"pct_oficial":69.69},{"anio":2021,"cod_depto_oferta":"13","departamento_oferta":"Bolívar","total_matriculados":76002,"matriculados_sem1":60616,"matriculados_oficial":43360,"matriculados_virtual":3609,"total_ies":41,"total_programas":564,"es_antioquia":false,"participacion_nacional_pct":3.11,"pct_oficial":57.05},{"anio":2021,"cod_depto_oferta":"15","departamento_oferta":"Boyacá","total_matriculados":68786,"matriculados_sem1":58538,"matriculados_oficial":52663,"matriculados_virtual":8688,"total_ies":21,"total_programas":502,"es_antioquia":false,"participacion_nacional_pct":2.81,"pct_oficial":76.56},{"anio":2021,"cod_depto_oferta":"66","departamento_oferta":"Risaralda","total_matriculados":48285,"matriculados_sem1":42721,"matriculados_oficial":27818,"matriculados_virtual":1775,"total_ies":29,"total_programas":417,"es_antioquia":false,"participacion_nacional_pct":1.97,"pct_oficial":57.61},{"anio":2021,"cod_depto_oferta":"52","departamento_oferta":"Nariño","total_matriculados":45660,"matriculados_sem1":42193,"matriculados_oficial":25102,"matriculados_virtual":2025,"total_ies":26,"total_programas":367,"es_antioquia":false,"participacion_nacional_pct":1.87,"pct_oficial":54.98},{"anio":2021,"cod_depto_oferta":"17","departamento_oferta":"Caldas","total_matriculados":46471,"matriculados_sem1":41936,"matriculados_oficial":28567,"matriculados_virtual":3258,"total_ies":19,"total_programas":461,"es_antioquia":false,"participacion_nacional_pct":1.9,"pct_oficial":61.47}],"anios":[2015,2016,2017,2018,2019,2020,2021],"metodologias":{"Presencial":[1535102,1594748,1589217,1583180,1580443,1533992,1527422],"Distancia (tradicional)":[269032,276538,279463,264544,233796,216598,227513],"Virtual":[63569,92458,109991,128986,150902,179958,238209]},"sectores":{"Oficial":[742041,764007,774147,778829,787021,778911,880728],"Privada":[1125662,1199737,1204524,1197881,1178120,1151702,1113655]},"areas_genero":[{"area":"Economía, Administración, Contaduría y Afines","femenino":465669,"masculino":302487,"total":768156,"pct_femenino":60.6},{"area":"Ingeniería, Arquitectura, Urbanismo y Afines","femenino":206333,"masculino":438232,"total":644565,"pct_femenino":32.0},{"area":"Ciencias Sociales y Humanas","femenino":274216,"masculino":166980,"total":441196,"pct_femenino":62.2},{"area":"Ciencias de la Educación","femenino":117081,"masculino":70909,"total":187990,"pct_femenino":62.3},{"area":"Ciencias de la Salud","femenino":126384,"masculino":57479,"total":183863,"pct_femenino":68.7},{"area":"Bellas Artes","femenino":38624,"masculino":35803,"total":74427,"pct_femenino":51.9},{"area":"Matemáticas y Ciencias Naturales","femenino":25837,"masculino":25072,"total":50909,"pct_femenino":50.8},{"area":"Agronomía, Veterinaria y Afines","femenino":26377,"masculino":23832,"total":50209,"pct_femenino":52.5}],"top_ies_antioquia":[{"anio":2021,"codigo_ies":1201,"nombre_ies":"UNIVERSIDAD DE ANTIOQUIA","sector_nombre":"Oficial","caracter_nombre":"Universidad","departamento_ies":"Antioquia","total_matriculados":35657,"matriculados_sem1":35657,"total_programas":315,"es_pascual_bravo":false,"es_antioquia":true},{"anio":2021,"codigo_ies":3302,"nombre_ies":"INSTITUTO TECNOLOGICO METROPOLITANO","sector_nombre":"Oficial","caracter_nombre":"Institución Universitaria / Escuela Tecnológica","departamento_ies":"Antioquia","total_matriculados":26475,"matriculados_sem1":26475,"total_programas":60,"es_pascual_bravo":false,"es_antioquia":true},{"anio":2021,"codigo_ies":2833,"nombre_ies":"CORPORACION UNIVERSITARIA REMINGTON","sector_nombre":"Privada","caracter_nombre":"Institución Universitaria / Escuela Tecnológica","departamento_ies":"Antioquia","total_matriculados":19353,"matriculados_sem1":19353,"total_programas":75,"es_pascual_bravo":false,"es_antioquia":true},{"anio":2021,"codigo_ies":2719,"nombre_ies":"UNIVERSIDAD CATÓLICA LUIS AMIGÓ","sector_nombre":"Privada","caracter_nombre":"Universidad","departamento_ies":"Antioquia","total_matriculados":15468,"matriculados_sem1":15468,"total_programas":57,"es_pascual_bravo":false,"es_antioquia":true},{"anio":2021,"codigo_ies":1710,"nombre_ies":"UNIVERSIDAD PONTIFICIA BOLIVARIANA","sector_nombre":"Privada","caracter_nombre":"Universidad","departamento_ies":"Antioquia","total_matriculados":15158,"matriculados_sem1":15158,"total_programas":198,"es_pascual_bravo":false,"es_antioquia":true},{"anio":2021,"codigo_ies":1102,"nombre_ies":"UNIVERSIDAD NACIONAL DE COLOMBIA","sector_nombre":"Oficial","caracter_nombre":"Universidad","departamento_ies":"Antioquia","total_matriculados":14206,"matriculados_sem1":14206,"total_programas":113,"es_pascual_bravo":false,"es_antioquia":true},{"anio":2021,"codigo_ies":3204,"nombre_ies":"TECNOLOGICO DE ANTIOQUIA","sector_nombre":"Oficial","caracter_nombre":"Institución Universitaria / Escuela Tecnológica","departamento_ies":"Antioquia","total_matriculados":13404,"matriculados_sem1":13404,"total_programas":42,"es_pascual_bravo":false,"es_antioquia":true},{"anio":2021,"codigo_ies":2209,"nombre_ies":"POLITECNICO COLOMBIANO JAIME ISAZA CADAVID","sector_nombre":"Oficial","caracter_nombre":"Institución Universitaria / Escuela Tecnológica","departamento_ies":"Antioquia","total_matriculados":13223,"matriculados_sem1":13223,"total_programas":43,"es_pascual_bravo":false,"es_antioquia":true},{"anio":2021,"codigo_ies":1712,"nombre_ies":"UNIVERSIDAD EAFIT-","sector_nombre":"Privada","caracter_nombre":"Universidad","departamento_ies":"Antioquia","total_matriculados":13190,"matriculados_sem1":13190,"total_programas":112,"es_pascual_bravo":false,"es_antioquia":true},{"anio":2021,"codigo_ies":1812,"nombre_ies":"UNIVERSIDAD DE MEDELLIN","sector_nombre":"Privada","caracter_nombre":"Universidad","departamento_ies":"Antioquia","total_matriculados":10011,"matriculados_sem1":10011,"total_programas":103,"es_pascual_bravo":false,"es_antioquia":true},{"anio":2021,"codigo_ies":3107,"nombre_ies":"INSTITUCIÓN UNIVERSITARIA PASCUAL BRAVO","sector_nombre":"Oficial","caracter_nombre":"Institución Universitaria / Escuela Tecnológica","departamento_ies":"Antioquia","total_matriculados":7898,"matriculados_sem1":7898,"total_programas":38,"es_pascual_bravo":true,"es_antioquia":true}],"reconciliacion_lambda":[{"anio":2015,"batch_matriculados":2293550,"stream_matriculados":2293550},{"anio":2016,"batch_matriculados":2394434,"stream_matriculados":2394434},{"anio":2017,"batch_matriculados":2446314,"stream_matriculados":2446314},{"anio":2018,"batch_matriculados":2440363,"stream_matriculados":2440363},{"anio":2019,"batch_matriculados":2396250,"stream_matriculados":2396250},{"anio":2020,"batch_matriculados":2355153,"stream_matriculados":2355153},{"anio":2021,"batch_matriculados":2447439,"stream_matriculados":2447439}]};
-    const fmtInt = n => new Intl.NumberFormat("es-CO").format(Math.round(n));
+    const D = {"meta":{"fuente_cita":"Ministerio de Educación Nacional (SNIES) — MEN_MATRICULA_ESTADISTICA_ES (datos.gov.co, dataset 5wck-szir)","url_fuente":"https://www.datos.gov.co/d/5wck-szir","fecha_ejecucion_utc":"2026-11-25 20:53 UTC","fecha_desde":"2015-01-01","fecha_hasta":"2021-07-01","anio_desde":2015,"anio_hasta":2021,"filas_curadas":230082,"total_matriculados_acum":16773503,"ies_unicas":338,"programas_unicos":15526,"departamentos_unicos":33},"titulo_respuesta":"La educación superior en Colombia alcanzó 1.994.383 matriculados en 2021-1: la virtualidad creció +274.7% y Antioquia concentró el 13.41% del país","kpi":{"periodo_corte":"2021-1","matriculados_colombia":1994383,"variacion_colombia_pct":6.8,"matriculados_antioquia":267463,"pct_antioquia":13.41,"variacion_antioquia_pct":9.4,"pct_virtual":11.94,"crec_virtual_pct":274.7,"pct_femenino":53.84,"pct_oficial":44.2,"ies_unicas":338,"programas_unicos":15526,"duplicados_corregidos":160821,"compresion_parquet_x":70.92},"evolucion_sem1":[{"anio":2015,"semestre":1,"fecha_periodo":"2015-01-01","total_matriculados":1867703,"matriculados_antioquia":244511,"matriculados_oficial":742041,"matriculados_privada":1125662,"matriculados_virtual":63569,"matriculados_femenino":995728,"matriculados_masculino":871975,"total_ies":314,"total_programas":9148,"registros":25727,"periodo_label":"2015-1","pct_antioquia":13.09,"pct_virtual":3.4,"pct_femenino":53.31},{"anio":2016,"semestre":1,"fecha_periodo":"2016-01-01","total_matriculados":1963744,"matriculados_antioquia":254312,"matriculados_oficial":764007,"matriculados_privada":1199737,"matriculados_virtual":92458,"matriculados_femenino":1048967,"matriculados_masculino":914777,"total_ies":319,"total_programas":9851,"registros":27180,"periodo_label":"2016-1","pct_antioquia":12.95,"pct_virtual":4.71,"pct_femenino":53.42},{"anio":2017,"semestre":1,"fecha_periodo":"2017-01-01","total_matriculados":1978671,"matriculados_antioquia":257231,"matriculados_oficial":774147,"matriculados_privada":1204524,"matriculados_virtual":109991,"matriculados_femenino":1060448,"matriculados_masculino":918223,"total_ies":311,"total_programas":10239,"registros":28728,"periodo_label":"2017-1","pct_antioquia":13.0,"pct_virtual":5.56,"pct_femenino":53.59},{"anio":2018,"semestre":1,"fecha_periodo":"2018-01-01","total_matriculados":1976710,"matriculados_antioquia":263021,"matriculados_oficial":778829,"matriculados_privada":1197881,"matriculados_virtual":128986,"matriculados_femenino":1060844,"matriculados_masculino":915866,"total_ies":313,"total_programas":10555,"registros":27392,"periodo_label":"2018-1","pct_antioquia":13.31,"pct_virtual":6.53,"pct_femenino":53.67},{"anio":2019,"semestre":1,"fecha_periodo":"2019-01-01","total_matriculados":1965141,"matriculados_antioquia":259759,"matriculados_oficial":787021,"matriculados_privada":1178120,"matriculados_virtual":150902,"matriculados_femenino":1048492,"matriculados_masculino":916649,"total_ies":315,"total_programas":10925,"registros":30200,"periodo_label":"2019-1","pct_antioquia":13.22,"pct_virtual":7.68,"pct_femenino":53.35},{"anio":2020,"semestre":1,"fecha_periodo":"2020-01-01","total_matriculados":1930613,"matriculados_antioquia":251151,"matriculados_oficial":778911,"matriculados_privada":1151702,"matriculados_virtual":179958,"matriculados_femenino":1030996,"matriculados_masculino":899617,"total_ies":317,"total_programas":10901,"registros":29492,"periodo_label":"2020-1","pct_antioquia":13.01,"pct_virtual":9.32,"pct_femenino":53.4},{"anio":2021,"semestre":1,"fecha_periodo":"2021-01-01","total_matriculados":1994383,"matriculados_antioquia":267463,"matriculados_oficial":880728,"matriculados_privada":1113655,"matriculados_virtual":238209,"matriculados_femenino":1073737,"matriculados_masculino":920646,"total_ies":324,"total_programas":11351,"registros":30716,"periodo_label":"2021-1","pct_antioquia":13.41,"pct_virtual":11.94,"pct_femenino":53.84}],"evolucion_completa":[{"anio":2015,"semestre":1,"fecha_periodo":"2015-01-01","total_matriculados":1867703,"matriculados_antioquia":244511,"matriculados_oficial":742041,"matriculados_privada":1125662,"matriculados_virtual":63569,"matriculados_femenino":995728,"matriculados_masculino":871975,"total_ies":314,"total_programas":9148,"registros":25727,"periodo_label":"2015-1","pct_antioquia":13.09,"pct_virtual":3.4,"pct_femenino":53.31},{"anio":2015,"semestre":2,"fecha_periodo":"2015-07-01","total_matriculados":425847,"matriculados_antioquia":70900,"matriculados_oficial":425847,"matriculados_privada":0,"matriculados_virtual":0,"matriculados_femenino":218273,"matriculados_masculino":207574,"total_ies":1,"total_programas":138,"registros":3846,"periodo_label":"2015-2","pct_antioquia":16.65,"pct_virtual":0.0,"pct_femenino":51.26},{"anio":2016,"semestre":1,"fecha_periodo":"2016-01-01","total_matriculados":1963744,"matriculados_antioquia":254312,"matriculados_oficial":764007,"matriculados_privada":1199737,"matriculados_virtual":92458,"matriculados_femenino":1048967,"matriculados_masculino":914777,"total_ies":319,"total_programas":9851,"registros":27180,"periodo_label":"2016-1","pct_antioquia":12.95,"pct_virtual":4.71,"pct_femenino":53.42},{"anio":2016,"semestre":2,"fecha_periodo":"2016-07-01","total_matriculados":430690,"matriculados_antioquia":71171,"matriculados_oficial":430690,"matriculados_privada":0,"matriculados_virtual":33965,"matriculados_femenino":217153,"matriculados_masculino":213537,"total_ies":1,"total_programas":142,"registros":3839,"periodo_label":"2016-2","pct_antioquia":16.52,"pct_virtual":7.89,"pct_femenino":50.42},{"anio":2017,"semestre":1,"fecha_periodo":"2017-01-01","total_matriculados":1978671,"matriculados_antioquia":257231,"matriculados_oficial":774147,"matriculados_privada":1204524,"matriculados_virtual":109991,"matriculados_femenino":1060448,"matriculados_masculino":918223,"total_ies":311,"total_programas":10239,"registros":28728,"periodo_label":"2017-1","pct_antioquia":13.0,"pct_virtual":5.56,"pct_femenino":53.59},{"anio":2017,"semestre":2,"fecha_periodo":"2017-07-01","total_matriculados":467643,"matriculados_antioquia":77385,"matriculados_oficial":467643,"matriculados_privada":0,"matriculados_virtual":59240,"matriculados_femenino":234106,"matriculados_masculino":233537,"total_ies":1,"total_programas":143,"registros":4004,"periodo_label":"2017-2","pct_antioquia":16.55,"pct_virtual":12.67,"pct_femenino":50.06},{"anio":2018,"semestre":1,"fecha_periodo":"2018-01-01","total_matriculados":1976710,"matriculados_antioquia":263021,"matriculados_oficial":778829,"matriculados_privada":1197881,"matriculados_virtual":128986,"matriculados_femenino":1060844,"matriculados_masculino":915866,"total_ies":313,"total_programas":10555,"registros":27392,"periodo_label":"2018-1","pct_antioquia":13.31,"pct_virtual":6.53,"pct_femenino":53.67},{"anio":2018,"semestre":2,"fecha_periodo":"2018-07-01","total_matriculados":463653,"matriculados_antioquia":77359,"matriculados_oficial":463653,"matriculados_privada":0,"matriculados_virtual":71184,"matriculados_femenino":231632,"matriculados_masculino":232021,"total_ies":1,"total_programas":435,"registros":4656,"periodo_label":"2018-2","pct_antioquia":16.68,"pct_virtual":15.35,"pct_femenino":49.96},{"anio":2019,"semestre":1,"fecha_periodo":"2019-01-01","total_matriculados":1965141,"matriculados_antioquia":259759,"matriculados_oficial":787021,"matriculados_privada":1178120,"matriculados_virtual":150902,"matriculados_femenino":1048492,"matriculados_masculino":916649,"total_ies":315,"total_programas":10925,"registros":30200,"periodo_label":"2019-1","pct_antioquia":13.22,"pct_virtual":7.68,"pct_femenino":53.35},{"anio":2019,"semestre":2,"fecha_periodo":"2019-07-01","total_matriculados":431109,"matriculados_antioquia":72023,"matriculados_oficial":431109,"matriculados_privada":0,"matriculados_virtual":70723,"matriculados_femenino":214017,"matriculados_masculino":217092,"total_ies":1,"total_programas":702,"registros":5232,"periodo_label":"2019-2","pct_antioquia":16.71,"pct_virtual":16.4,"pct_femenino":49.64},{"anio":2020,"semestre":1,"fecha_periodo":"2020-01-01","total_matriculados":1930613,"matriculados_antioquia":251151,"matriculados_oficial":778911,"matriculados_privada":1151702,"matriculados_virtual":179958,"matriculados_femenino":1030996,"matriculados_masculino":899617,"total_ies":317,"total_programas":10901,"registros":29492,"periodo_label":"2020-1","pct_antioquia":13.01,"pct_virtual":9.32,"pct_femenino":53.4},{"anio":2020,"semestre":2,"fecha_periodo":"2020-07-01","total_matriculados":424540,"matriculados_antioquia":69311,"matriculados_oficial":424540,"matriculados_privada":0,"matriculados_virtual":71425,"matriculados_femenino":216433,"matriculados_masculino":208107,"total_ies":1,"total_programas":922,"registros":5229,"periodo_label":"2020-2","pct_antioquia":16.33,"pct_virtual":16.82,"pct_femenino":50.98},{"anio":2021,"semestre":1,"fecha_periodo":"2021-01-01","total_matriculados":1994383,"matriculados_antioquia":267463,"matriculados_oficial":880728,"matriculados_privada":1113655,"matriculados_virtual":238209,"matriculados_femenino":1073737,"matriculados_masculino":920646,"total_ies":324,"total_programas":11351,"registros":30716,"periodo_label":"2021-1","pct_antioquia":13.41,"pct_virtual":11.94,"pct_femenino":53.84},{"anio":2021,"semestre":2,"fecha_periodo":"2021-07-01","total_matriculados":453056,"matriculados_antioquia":52894,"matriculados_oficial":453056,"matriculados_privada":0,"matriculados_virtual":136795,"matriculados_femenino":232987,"matriculados_masculino":220069,"total_ies":1,"total_programas":939,"registros":3841,"periodo_label":"2021-2","pct_antioquia":11.67,"pct_virtual":30.19,"pct_femenino":51.43}],"top_deptos":[{"anio":2021,"cod_depto_oferta":"11","departamento_oferta":"Bogotá D.C.","total_matriculados":833565,"matriculados_sem1":618804,"matriculados_oficial":339169,"matriculados_virtual":267661,"total_ies":134,"total_programas":3878,"es_antioquia":false,"participacion_nacional_pct":34.06,"pct_oficial":40.69},{"anio":2021,"cod_depto_oferta":"05","departamento_oferta":"Antioquia","total_matriculados":320357,"matriculados_sem1":267463,"matriculados_oficial":188775,"matriculados_virtual":24570,"total_ies":74,"total_programas":2042,"es_antioquia":true,"participacion_nacional_pct":13.09,"pct_oficial":58.93},{"anio":2021,"cod_depto_oferta":"76","departamento_oferta":"Valle del Cauca","total_matriculados":170683,"matriculados_sem1":146672,"matriculados_oficial":92586,"matriculados_virtual":6736,"total_ies":61,"total_programas":1253,"es_antioquia":false,"participacion_nacional_pct":6.97,"pct_oficial":54.24},{"anio":2021,"cod_depto_oferta":"08","departamento_oferta":"Atlántico","total_matriculados":128905,"matriculados_sem1":112256,"matriculados_oficial":47657,"matriculados_virtual":3429,"total_ies":39,"total_programas":863,"es_antioquia":false,"participacion_nacional_pct":5.27,"pct_oficial":36.97},{"anio":2021,"cod_depto_oferta":"68","departamento_oferta":"Santander","total_matriculados":122611,"matriculados_sem1":109725,"matriculados_oficial":66310,"matriculados_virtual":18977,"total_ies":39,"total_programas":838,"es_antioquia":false,"participacion_nacional_pct":5.01,"pct_oficial":54.08},{"anio":2021,"cod_depto_oferta":"54","departamento_oferta":"Norte de Santander","total_matriculados":71972,"matriculados_sem1":63365,"matriculados_oficial":60094,"matriculados_virtual":2204,"total_ies":24,"total_programas":442,"es_antioquia":false,"participacion_nacional_pct":2.94,"pct_oficial":83.5},{"anio":2021,"cod_depto_oferta":"25","departamento_oferta":"Cundinamarca","total_matriculados":81933,"matriculados_sem1":62659,"matriculados_oficial":57097,"matriculados_virtual":5775,"total_ies":29,"total_programas":448,"es_antioquia":false,"participacion_nacional_pct":3.35,"pct_oficial":69.69},{"anio":2021,"cod_depto_oferta":"13","departamento_oferta":"Bolívar","total_matriculados":76002,"matriculados_sem1":60616,"matriculados_oficial":43360,"matriculados_virtual":3609,"total_ies":41,"total_programas":564,"es_antioquia":false,"participacion_nacional_pct":3.11,"pct_oficial":57.05},{"anio":2021,"cod_depto_oferta":"15","departamento_oferta":"Boyacá","total_matriculados":68786,"matriculados_sem1":58538,"matriculados_oficial":52663,"matriculados_virtual":8688,"total_ies":21,"total_programas":502,"es_antioquia":false,"participacion_nacional_pct":2.81,"pct_oficial":76.56},{"anio":2021,"cod_depto_oferta":"66","departamento_oferta":"Risaralda","total_matriculados":48285,"matriculados_sem1":42721,"matriculados_oficial":27818,"matriculados_virtual":1775,"total_ies":29,"total_programas":417,"es_antioquia":false,"participacion_nacional_pct":1.97,"pct_oficial":57.61},{"anio":2021,"cod_depto_oferta":"52","departamento_oferta":"Nariño","total_matriculados":45660,"matriculados_sem1":42193,"matriculados_oficial":25102,"matriculados_virtual":2025,"total_ies":26,"total_programas":367,"es_antioquia":false,"participacion_nacional_pct":1.87,"pct_oficial":54.98},{"anio":2021,"cod_depto_oferta":"17","departamento_oferta":"Caldas","total_matriculados":46471,"matriculados_sem1":41936,"matriculados_oficial":28567,"matriculados_virtual":3258,"total_ies":19,"total_programas":461,"es_antioquia":false,"participacion_nacional_pct":1.9,"pct_oficial":61.47}],"anios":[2015,2016,2017,2018,2019,2020,2021],"metodologias":{"Presencial":[1535102,1594748,1589217,1583180,1580443,1533992,1527422],"Distancia (tradicional)":[269032,276538,279463,264544,233796,216598,227513],"Virtual":[63569,92458,109991,128986,150902,179958,238209]},"sectores":{"Oficial":[742041,764007,774147,778829,787021,778911,880728],"Privada":[1125662,1199737,1204524,1197881,1178120,1151702,1113655]},"areas_genero":[{"area":"Economía, Administración, Contaduría y Afines","femenino":465669,"masculino":302487,"total":768156,"pct_femenino":60.6},{"area":"Ingeniería, Arquitectura, Urbanismo y Afines","femenino":206333,"masculino":438232,"total":644565,"pct_femenino":32.0},{"area":"Ciencias Sociales y Humanas","femenino":274216,"masculino":166980,"total":441196,"pct_femenino":62.2},{"area":"Ciencias de la Educación","femenino":117081,"masculino":70909,"total":187990,"pct_femenino":62.3},{"area":"Ciencias de la Salud","femenino":126384,"masculino":57479,"total":183863,"pct_femenino":68.7},{"area":"Bellas Artes","femenino":38624,"masculino":35803,"total":74427,"pct_femenino":51.9},{"area":"Matemáticas y Ciencias Naturales","femenino":25837,"masculino":25072,"total":50909,"pct_femenino":50.8},{"area":"Agronomía, Veterinaria y Afines","femenino":26377,"masculino":23832,"total":50209,"pct_femenino":52.5}],"top_ies_antioquia":[{"anio":2021,"codigo_ies":1201,"nombre_ies":"UNIVERSIDAD DE ANTIOQUIA","sector_nombre":"Oficial","caracter_nombre":"Universidad","departamento_ies":"Antioquia","total_matriculados":35657,"matriculados_sem1":35657,"total_programas":315,"es_pascual_bravo":false,"es_antioquia":true},{"anio":2021,"codigo_ies":3302,"nombre_ies":"INSTITUTO TECNOLOGICO METROPOLITANO","sector_nombre":"Oficial","caracter_nombre":"Institución Universitaria / Escuela Tecnológica","departamento_ies":"Antioquia","total_matriculados":26475,"matriculados_sem1":26475,"total_programas":60,"es_pascual_bravo":false,"es_antioquia":true},{"anio":2021,"codigo_ies":2833,"nombre_ies":"CORPORACION UNIVERSITARIA REMINGTON","sector_nombre":"Privada","caracter_nombre":"Institución Universitaria / Escuela Tecnológica","departamento_ies":"Antioquia","total_matriculados":19353,"matriculados_sem1":19353,"total_programas":75,"es_pascual_bravo":false,"es_antioquia":true},{"anio":2021,"codigo_ies":2719,"nombre_ies":"UNIVERSIDAD CATÓLICA LUIS AMIGÓ","sector_nombre":"Privada","caracter_nombre":"Universidad","departamento_ies":"Antioquia","total_matriculados":15468,"matriculados_sem1":15468,"total_programas":57,"es_pascual_bravo":false,"es_antioquia":true},{"anio":2021,"codigo_ies":1710,"nombre_ies":"UNIVERSIDAD PONTIFICIA BOLIVARIANA","sector_nombre":"Privada","caracter_nombre":"Universidad","departamento_ies":"Antioquia","total_matriculados":15158,"matriculados_sem1":15158,"total_programas":198,"es_pascual_bravo":false,"es_antioquia":true},{"anio":2021,"codigo_ies":1102,"nombre_ies":"UNIVERSIDAD NACIONAL DE COLOMBIA","sector_nombre":"Oficial","caracter_nombre":"Universidad","departamento_ies":"Antioquia","total_matriculados":14206,"matriculados_sem1":14206,"total_programas":113,"es_pascual_bravo":false,"es_antioquia":true},{"anio":2021,"codigo_ies":3204,"nombre_ies":"TECNOLOGICO DE ANTIOQUIA","sector_nombre":"Oficial","caracter_nombre":"Institución Universitaria / Escuela Tecnológica","departamento_ies":"Antioquia","total_matriculados":13404,"matriculados_sem1":13404,"total_programas":42,"es_pascual_bravo":false,"es_antioquia":true},{"anio":2021,"codigo_ies":2209,"nombre_ies":"POLITECNICO COLOMBIANO JAIME ISAZA CADAVID","sector_nombre":"Oficial","caracter_nombre":"Institución Universitaria / Escuela Tecnológica","departamento_ies":"Antioquia","total_matriculados":13223,"matriculados_sem1":13223,"total_programas":43,"es_pascual_bravo":false,"es_antioquia":true},{"anio":2021,"codigo_ies":1712,"nombre_ies":"UNIVERSIDAD EAFIT-","sector_nombre":"Privada","caracter_nombre":"Universidad","departamento_ies":"Antioquia","total_matriculados":13190,"matriculados_sem1":13190,"total_programas":112,"es_pascual_bravo":false,"es_antioquia":true},{"anio":2021,"codigo_ies":1812,"nombre_ies":"UNIVERSIDAD DE MEDELLIN","sector_nombre":"Privada","caracter_nombre":"Universidad","departamento_ies":"Antioquia","total_matriculados":10011,"matriculados_sem1":10011,"total_programas":103,"es_pascual_bravo":false,"es_antioquia":true},{"anio":2021,"codigo_ies":3107,"nombre_ies":"INSTITUCIÓN UNIVERSITARIA PASCUAL BRAVO","sector_nombre":"Oficial","caracter_nombre":"Institución Universitaria / Escuela Tecnológica","departamento_ies":"Antioquia","total_matriculados":7898,"matriculados_sem1":7898,"total_programas":38,"es_pascual_bravo":true,"es_antioquia":true}],"reconciliacion_lambda":[{"anio":2015,"batch_matriculados":2293550,"stream_matriculados":2293550},{"anio":2016,"batch_matriculados":2394434,"stream_matriculados":2394434},{"anio":2017,"batch_matriculados":2446314,"stream_matriculados":2446314},{"anio":2018,"batch_matriculados":2440363,"stream_matriculados":2440363},{"anio":2019,"batch_matriculados":2396250,"stream_matriculados":2396250},{"anio":2020,"batch_matriculados":2355153,"stream_matriculados":2355153},{"anio":2021,"batch_matriculados":2447439,"stream_matriculados":2447439}]};
+    const toNum = v => {
+      const n = Number(v);
+      return Number.isFinite(n) ? n : 0;
+    };
 
-    document.getElementById("kpi-col").textContent = fmtInt(D.kpi.matriculados_colombia);
-    document.getElementById("kpi-ant").textContent = fmtInt(D.kpi.matriculados_antioquia);
+    const fmtInt = n => {
+      const num = Number(n);
+      if (!Number.isFinite(num)) return "0";
+      return new Intl.NumberFormat("es-CO", { maximumFractionDigits: 0 }).format(Math.round(num));
+    };
+
+    const fmtPct = (n, dec = 1) => {
+      const num = Number(n);
+      if (!Number.isFinite(num)) return "0,0 %";
+      return new Intl.NumberFormat("es-CO", {
+        minimumFractionDigits: dec,
+        maximumFractionDigits: dec
+      }).format(num) + " %";
+    };
+
+    const limpiarNombre = s => String(s || "").replace(/-+$/, "").trim();
+    const acortar = (s, max = 34) => {
+      const limpio = limpiarNombre(s);
+      return limpio.length > max ? limpio.slice(0, max - 2) + "…" : limpio;
+    };
+
+    // KPIs principales con validación segura
+    const kpiColEl = document.getElementById("kpi-col");
+    const kpiAntEl = document.getElementById("kpi-ant");
+    if (kpiColEl) kpiColEl.textContent = fmtInt(D.kpi && D.kpi.matriculados_colombia);
+    if (kpiAntEl) kpiAntEl.textContent = fmtInt(D.kpi && D.kpi.matriculados_antioquia);
 
     const layoutBase = {
       paper_bgcolor: "rgba(0,0,0,0)",
       plot_bgcolor: "rgba(0,0,0,0)",
+      separators: ",.",
       font: { family: "Inter, sans-serif", color: "#cbd5e1", size: 12 },
-      margin: { t: 22, r: 20, b: 48, l: 64 },
-      legend: { orientation: "h", y: -0.18, x: 0 },
-      xaxis: { gridcolor: "#1e293b", linecolor: "#334155" },
-      yaxis: { gridcolor: "#1e293b", linecolor: "#334155", separuffix: "" },
+      margin: { t: 24, r: 24, b: 56, l: 72 },
+      legend: { orientation: "h", y: -0.22, x: 0 },
+      hoverlabel: {
+        bgcolor: "#0f172a",
+        bordercolor: "#334155",
+        font: { family: "Inter, sans-serif", size: 12, color: "#f8fafc" }
+      },
+      xaxis: {
+        gridcolor: "#1e293b",
+        linecolor: "#334155",
+        zerolinecolor: "#334155",
+        automargin: true
+      },
+      yaxis: {
+        gridcolor: "#1e293b",
+        linecolor: "#334155",
+        zerolinecolor: "#334155",
+        separatethousands: true,
+        automargin: true
+      }
     };
+
     const cfg = { responsive: true, displaylogo: false, locale: "es" };
 
-    // 1. Evolución Colombia vs Antioquia
+    // 1. Evolución Colombia vs Antioquia (eje X forzado a categoría para evitar conversión a fecha)
+    const periodosSem1 = D.evolucion_sem1.map(r => String(r.periodo_label));
+    const colVals = D.evolucion_sem1.map(r => toNum(r.total_matriculados));
+    const antVals = D.evolucion_sem1.map(r => toNum(r.matriculados_antioquia));
+
     Plotly.newPlot("chart-evolucion", [
       {
-        x: D.evolucion_sem1.map(r => r.periodo_label),
-        y: D.evolucion_sem1.map(r => r.total_matriculados),
+        x: periodosSem1,
+        y: colVals,
+        customdata: D.evolucion_sem1.map(r => [fmtInt(r.total_matriculados), fmtPct(r.pct_oficial || (100 * toNum(r.matriculados_oficial) / Math.max(1, toNum(r.total_matriculados))), 1)]),
         name: "Colombia (Total)",
         type: "bar",
         marker: { color: "#38bdf8", opacity: 0.85 },
-        hovertemplate: "<b>%{x}</b><br>Colombia: %{y:,.0f}<extra></extra>"
+        hovertemplate: "<b>Periodo %{x}</b><br>Colombia: %{customdata[0]}<extra></extra>"
       },
       {
-        x: D.evolucion_sem1.map(r => r.periodo_label),
-        y: D.evolucion_sem1.map(r => r.matriculados_antioquia),
+        x: periodosSem1,
+        y: antVals,
+        customdata: D.evolucion_sem1.map(r => [fmtInt(r.matriculados_antioquia), fmtPct(r.pct_antioquia, 2)]),
         name: "Antioquia",
         type: "scatter",
         mode: "lines+markers",
         yaxis: "y2",
         line: { color: "#f59e0b", width: 3 },
         marker: { size: 8, color: "#f59e0b" },
-        hovertemplate: "<b>%{x}</b><br>Antioquia: %{y:,.0f}<extra></extra>"
+        hovertemplate: "<b>Periodo %{x}</b><br>Antioquia: %{customdata[0]} (%{customdata[1]} del país)<extra></extra>"
       }
     ], {
       ...layoutBase,
-      margin: { t: 22, r: 64, b: 48, l: 70 },
-      yaxis: { ...layoutBase.yaxis, title: "Colombia" },
-      yaxis2: { title: "Antioquia", overlaying: "y", side: "right", showgrid: false, color: "#f59e0b" }
+      margin: { t: 24, r: 72, b: 56, l: 76 },
+      xaxis: {
+        ...layoutBase.xaxis,
+        type: "category",
+        title: { text: "Periodo académico", standoff: 10 }
+      },
+      yaxis: {
+        ...layoutBase.yaxis,
+        title: { text: "Colombia (estudiantes)", standoff: 10 },
+        rangemode: "tozero"
+      },
+      yaxis2: {
+        title: { text: "Antioquia (estudiantes)", font: { color: "#f59e0b" }, standoff: 10 },
+        overlaying: "y",
+        side: "right",
+        showgrid: false,
+        color: "#f59e0b",
+        separatethousands: true,
+        automargin: true
+      }
     }, cfg);
 
-    // 2. Top 12 departamentos
+    // 2. Top 12 departamentos (2021-1)
     const deptosRev = [...D.top_deptos].reverse();
     Plotly.newPlot("chart-deptos", [{
       y: deptosRev.map(r => r.departamento_oferta),
-      x: deptosRev.map(r => r.matriculados_sem1),
+      x: deptosRev.map(r => toNum(r.matriculados_sem1)),
+      customdata: deptosRev.map(r => [
+        fmtInt(r.matriculados_sem1),
+        fmtPct(r.pct_oficial, 1),
+        fmtInt(r.total_ies)
+      ]),
       type: "bar",
       orientation: "h",
       marker: {
@@ -441,56 +514,110 @@ Plotly.register(module.exports);})();</script>
       },
       text: deptosRev.map(r => fmtInt(r.matriculados_sem1)),
       textposition: "outside",
-      hovertemplate: "<b>%{y}</b><br>Matriculados: %{x:,.0f}<extra></extra>"
+      cliponaxis: false,
+      hovertemplate: "<b>%{y}</b><br>Matriculados 2021-1: %{customdata[0]}<br>Sector oficial anual: %{customdata[1]}<br>IES activas: %{customdata[2]}<extra></extra>"
     }], {
       ...layoutBase,
-      margin: { t: 10, r: 70, b: 40, l: 135 },
-      xaxis: { ...layoutBase.xaxis, title: "Estudiantes matriculados" }
+      margin: { t: 10, r: 86, b: 48, l: 145 },
+      xaxis: {
+        ...layoutBase.xaxis,
+        type: "linear",
+        separatethousands: true,
+        title: { text: "Estudiantes matriculados (2021-1)", standoff: 10 }
+      },
+      yaxis: {
+        ...layoutBase.yaxis,
+        type: "category"
+      }
     }, cfg);
 
-    // 3. Metodología (Presencial / Distancia / Virtual)
-    Plotly.newPlot("chart-metodologia", [
-      { x: D.anios, y: D.metodologias["Presencial"], name: "Presencial", type: "bar", marker: { color: "#38bdf8" } },
-      { x: D.anios, y: D.metodologias["Distancia (tradicional)"], name: "Distancia (tradicional)", type: "bar", marker: { color: "#a78bfa" } },
-      { x: D.anios, y: D.metodologias["Virtual"], name: "Virtual", type: "bar", marker: { color: "#34d399" } }
-    ], {
+    // 3. Metodología (Presencial / Distancia / Virtual) — eje X categórico para evitar decimales
+    const aniosCat = D.anios.map(a => `${a}-1`);
+    const seriesMet = [
+      { key: "Presencial", color: "#38bdf8" },
+      { key: "Distancia (tradicional)", color: "#a78bfa" },
+      { key: "Virtual", color: "#34d399" }
+    ];
+
+    Plotly.newPlot("chart-metodologia", seriesMet.map(s => {
+      const vals = (D.metodologias[s.key] || []).map(toNum);
+      return {
+        x: aniosCat,
+        y: vals,
+        customdata: vals.map((v, i) => {
+          const tot = seriesMet.reduce((acc, m) => acc + toNum((D.metodologias[m.key] || [])[i]), 0);
+          return [fmtInt(v), fmtPct(tot ? (100 * v / tot) : 0, 2)];
+        }),
+        name: s.key,
+        type: "bar",
+        marker: { color: s.color },
+        hovertemplate: `<b>${s.key} (%{x})</b><br>Matriculados: %{customdata[0]} (%{customdata[1]})<extra></extra>`
+      };
+    }), {
       ...layoutBase,
       barmode: "stack",
-      yaxis: { ...layoutBase.yaxis, title: "Matriculados (Semestre 1)" }
+      xaxis: {
+        ...layoutBase.xaxis,
+        type: "category",
+        title: { text: "Periodo académico", standoff: 10 }
+      },
+      yaxis: {
+        ...layoutBase.yaxis,
+        title: { text: "Matriculados (Semestre 1)", standoff: 10 }
+      }
     }, cfg);
 
-    // 4. Áreas x Género
+    // 4. Áreas x Género (2021 acumulado)
     const areasRev = [...D.areas_genero].reverse();
-    const acortar = s => s.length > 34 ? s.slice(0, 32) + "…" : s;
     Plotly.newPlot("chart-areas", [
       {
         y: areasRev.map(r => acortar(r.area)),
-        x: areasRev.map(r => r.femenino),
+        x: areasRev.map(r => toNum(r.femenino)),
+        customdata: areasRev.map(r => [r.area, fmtInt(r.femenino), fmtPct(r.pct_femenino, 1)]),
         name: "Femenino",
         type: "bar",
         orientation: "h",
-        marker: { color: "#fb7185" }
+        marker: { color: "#fb7185" },
+        hovertemplate: "<b>%{customdata[0]}</b><br>Femenino: %{customdata[1]} (%{customdata[2]})<extra></extra>"
       },
       {
         y: areasRev.map(r => acortar(r.area)),
-        x: areasRev.map(r => r.masculino),
+        x: areasRev.map(r => toNum(r.masculino)),
+        customdata: areasRev.map(r => [r.area, fmtInt(r.masculino), fmtPct(100 - toNum(r.pct_femenino), 1)]),
         name: "Masculino",
         type: "bar",
         orientation: "h",
-        marker: { color: "#38bdf8" }
+        marker: { color: "#38bdf8" },
+        hovertemplate: "<b>%{customdata[0]}</b><br>Masculino: %{customdata[1]} (%{customdata[2]})<extra></extra>"
       }
     ], {
       ...layoutBase,
       barmode: "group",
-      margin: { t: 10, r: 20, b: 48, l: 215 },
-      xaxis: { ...layoutBase.xaxis, title: "Matriculados acumulados" }
+      margin: { t: 10, r: 24, b: 56, l: 225 },
+      xaxis: {
+        ...layoutBase.xaxis,
+        type: "linear",
+        separatethousands: true,
+        title: { text: "Matriculados acumulados (2021)", standoff: 10 }
+      },
+      yaxis: {
+        ...layoutBase.yaxis,
+        type: "category"
+      }
     }, cfg);
 
-    // 5. Top IES Antioquia
+    // 5. Top IES Antioquia (2021-1)
     const iesRev = [...D.top_ies_antioquia].reverse();
     Plotly.newPlot("chart-ies", [{
-      y: iesRev.map(r => acortar(r.nombre_ies)),
-      x: iesRev.map(r => r.matriculados_sem1),
+      y: iesRev.map(r => acortar(r.nombre_ies, 36)),
+      x: iesRev.map(r => toNum(r.matriculados_sem1)),
+      customdata: iesRev.map(r => [
+        limpiarNombre(r.nombre_ies),
+        fmtInt(r.matriculados_sem1),
+        r.sector_nombre,
+        fmtInt(r.total_programas),
+        r.codigo_ies
+      ]),
       type: "bar",
       orientation: "h",
       marker: {
@@ -498,26 +625,57 @@ Plotly.register(module.exports);})();</script>
       },
       text: iesRev.map(r => fmtInt(r.matriculados_sem1)),
       textposition: "outside",
-      hovertemplate: "<b>%{y}</b><br>Matriculados: %{x:,.0f}<extra></extra>"
+      cliponaxis: false,
+      hovertemplate: "<b>%{customdata[0]}</b> (SNIES %{customdata[4]})<br>Matriculados 2021-1: %{customdata[1]}<br>Sector: %{customdata[2]} · Programas: %{customdata[3]}<extra></extra>"
     }], {
       ...layoutBase,
-      margin: { t: 10, r: 72, b: 42, l: 245 },
-      xaxis: { ...layoutBase.xaxis, title: "Matriculados (Semestre 1) · Dorado = I.U. Pascual Bravo, Verde = Oficial" }
+      margin: { t: 10, r: 86, b: 52, l: 255 },
+      xaxis: {
+        ...layoutBase.xaxis,
+        type: "linear",
+        separatethousands: true,
+        title: { text: "Matriculados 2021-1 · Dorado = I.U. Pascual Bravo, Verde = Oficial", standoff: 10 }
+      },
+      yaxis: {
+        ...layoutBase.yaxis,
+        type: "category"
+      }
     }, cfg);
 
-    // 6. Tabla Lambda Batch vs Streaming
+    // 6. Tabla Lambda Batch vs Streaming (con fila de total acumulado)
     const tbody = document.getElementById("tabla-lambda");
-    D.reconciliacion_lambda.forEach(r => {
-      const diff = r.batch_matriculados - r.stream_matriculados;
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${r.anio}</td>
-        <td class="num">${fmtInt(r.batch_matriculados)}</td>
-        <td class="num">${fmtInt(r.stream_matriculados)}</td>
-        <td class="num">${fmtInt(diff)}</td>
+    if (tbody) {
+      tbody.innerHTML = "";
+      let sumBatch = 0;
+      let sumStream = 0;
+
+      D.reconciliacion_lambda.forEach(r => {
+        const b = toNum(r.batch_matriculados);
+        const s = toNum(r.stream_matriculados);
+        const diff = b - s;
+        sumBatch += b;
+        sumStream += s;
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${r.anio}</td>
+          <td class="num">${fmtInt(b)}</td>
+          <td class="num">${fmtInt(s)}</td>
+          <td class="num">${fmtInt(diff)}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      const trTotal = document.createElement("tr");
+      trTotal.className = "highlight";
+      trTotal.innerHTML = `
+        <td>TOTAL (2015–2021)</td>
+        <td class="num">${fmtInt(sumBatch)}</td>
+        <td class="num">${fmtInt(sumStream)}</td>
+        <td class="num">${fmtInt(sumBatch - sumStream)}</td>
       `;
-      tbody.appendChild(tr);
-    });
+      tbody.appendChild(trTotal);
+    }
   </script>
 </body>
 </html>

@@ -165,24 +165,24 @@
 
     <section class="kpis">
       <div class="kpi">
-        <div class="kpi-label">Matrícula Colombia ({{ d.kpi.periodo_corte }})</div>
-        <div class="kpi-value" id="kpi-col">—</div>
-        <div class="kpi-sub">Variación vs. 2015-1: <span class="up">{{ "%+.1f"|format(d.kpi.variacion_colombia_pct) }} %</span> · {{ d.kpi.ies_unicas }} IES</div>
+        <div class="kpi-label">Matrícula Colombia (2021-1)</div>
+        <div class="kpi-value" id="kpi-col">1.994.383</div>
+        <div class="kpi-sub">Variación vs. 2015-1: <span class="up">+6,8 %</span> · 338 IES</div>
       </div>
       <div class="kpi">
-        <div class="kpi-label">Antioquia ({{ d.kpi.periodo_corte }})</div>
-        <div class="kpi-value" id="kpi-ant">—</div>
-        <div class="kpi-sub"><span class="hl">{{ d.kpi.pct_antioquia }} %</span> del total nacional ({{ "%+.1f"|format(d.kpi.variacion_antioquia_pct) }} % vs. 2015-1)</div>
+        <div class="kpi-label">Antioquia (2021-1)</div>
+        <div class="kpi-value" id="kpi-ant">267.463</div>
+        <div class="kpi-sub"><span class="hl">13,41 %</span> del total nacional (+9,4 % vs. 2015-1)</div>
       </div>
       <div class="kpi">
-        <div class="kpi-label">Educación Virtual ({{ d.kpi.periodo_corte }})</div>
-        <div class="kpi-value">{{ d.kpi.pct_virtual }} %</div>
-        <div class="kpi-sub">Crecimiento 2015–2021: <span class="up">+{{ d.kpi.crec_virtual_pct }} %</span> en estudiantes</div>
+        <div class="kpi-label">Educación Virtual (2021-1)</div>
+        <div class="kpi-value">11,94 %</div>
+        <div class="kpi-sub">Crecimiento 2015–2021: <span class="up">+274,7 %</span> en estudiantes</div>
       </div>
       <div class="kpi">
         <div class="kpi-label">Participación Femenina &amp; Sector Oficial</div>
-        <div class="kpi-value">{{ d.kpi.pct_femenino }} %</div>
-        <div class="kpi-sub">Mujeres matriculadas · Sector Oficial: <span class="hl">{{ d.kpi.pct_oficial }} %</span></div>
+        <div class="kpi-value">53,84 %</div>
+        <div class="kpi-sub">Mujeres matriculadas · Sector Oficial: <span class="hl">44,2 %</span></div>
       </div>
     </section>
 
@@ -250,55 +250,128 @@
   <script>{{ plotly_js }}</script>
   <script>
     const D = {{ datos_json }};
-    const fmtInt = n => new Intl.NumberFormat("es-CO").format(Math.round(n));
+    const toNum = v => {
+      const n = Number(v);
+      return Number.isFinite(n) ? n : 0;
+    };
 
-    document.getElementById("kpi-col").textContent = fmtInt(D.kpi.matriculados_colombia);
-    document.getElementById("kpi-ant").textContent = fmtInt(D.kpi.matriculados_antioquia);
+    const fmtInt = n => {
+      const num = Number(n);
+      if (!Number.isFinite(num)) return "0";
+      return new Intl.NumberFormat("es-CO", { maximumFractionDigits: 0 }).format(Math.round(num));
+    };
+
+    const fmtPct = (n, dec = 1) => {
+      const num = Number(n);
+      if (!Number.isFinite(num)) return "0,0 %";
+      return new Intl.NumberFormat("es-CO", {
+        minimumFractionDigits: dec,
+        maximumFractionDigits: dec
+      }).format(num) + " %";
+    };
+
+    const limpiarNombre = s => String(s || "").replace(/-+$/, "").trim();
+    const acortar = (s, max = 34) => {
+      const limpio = limpiarNombre(s);
+      return limpio.length > max ? limpio.slice(0, max - 2) + "…" : limpio;
+    };
+
+    // KPIs principales con validación segura
+    const kpiColEl = document.getElementById("kpi-col");
+    const kpiAntEl = document.getElementById("kpi-ant");
+    if (kpiColEl) kpiColEl.textContent = fmtInt(D.kpi && D.kpi.matriculados_colombia);
+    if (kpiAntEl) kpiAntEl.textContent = fmtInt(D.kpi && D.kpi.matriculados_antioquia);
 
     const layoutBase = {
       paper_bgcolor: "rgba(0,0,0,0)",
       plot_bgcolor: "rgba(0,0,0,0)",
+      separators: ",.",
       font: { family: "Inter, sans-serif", color: "#cbd5e1", size: 12 },
-      margin: { t: 22, r: 20, b: 48, l: 64 },
-      legend: { orientation: "h", y: -0.18, x: 0 },
-      xaxis: { gridcolor: "#1e293b", linecolor: "#334155" },
-      yaxis: { gridcolor: "#1e293b", linecolor: "#334155", separuffix: "" },
+      margin: { t: 24, r: 24, b: 56, l: 72 },
+      legend: { orientation: "h", y: -0.22, x: 0 },
+      hoverlabel: {
+        bgcolor: "#0f172a",
+        bordercolor: "#334155",
+        font: { family: "Inter, sans-serif", size: 12, color: "#f8fafc" }
+      },
+      xaxis: {
+        gridcolor: "#1e293b",
+        linecolor: "#334155",
+        zerolinecolor: "#334155",
+        automargin: true
+      },
+      yaxis: {
+        gridcolor: "#1e293b",
+        linecolor: "#334155",
+        zerolinecolor: "#334155",
+        separatethousands: true,
+        automargin: true
+      }
     };
+
     const cfg = { responsive: true, displaylogo: false, locale: "es" };
 
-    // 1. Evolución Colombia vs Antioquia
+    // 1. Evolución Colombia vs Antioquia (eje X forzado a categoría para evitar conversión a fecha)
+    const periodosSem1 = D.evolucion_sem1.map(r => String(r.periodo_label));
+    const colVals = D.evolucion_sem1.map(r => toNum(r.total_matriculados));
+    const antVals = D.evolucion_sem1.map(r => toNum(r.matriculados_antioquia));
+
     Plotly.newPlot("chart-evolucion", [
       {
-        x: D.evolucion_sem1.map(r => r.periodo_label),
-        y: D.evolucion_sem1.map(r => r.total_matriculados),
+        x: periodosSem1,
+        y: colVals,
+        customdata: D.evolucion_sem1.map(r => [fmtInt(r.total_matriculados), fmtPct(r.pct_oficial || (100 * toNum(r.matriculados_oficial) / Math.max(1, toNum(r.total_matriculados))), 1)]),
         name: "Colombia (Total)",
         type: "bar",
         marker: { color: "#38bdf8", opacity: 0.85 },
-        hovertemplate: "<b>%{x}</b><br>Colombia: %{y:,.0f}<extra></extra>"
+        hovertemplate: "<b>Periodo %{x}</b><br>Colombia: %{customdata[0]}<extra></extra>"
       },
       {
-        x: D.evolucion_sem1.map(r => r.periodo_label),
-        y: D.evolucion_sem1.map(r => r.matriculados_antioquia),
+        x: periodosSem1,
+        y: antVals,
+        customdata: D.evolucion_sem1.map(r => [fmtInt(r.matriculados_antioquia), fmtPct(r.pct_antioquia, 2)]),
         name: "Antioquia",
         type: "scatter",
         mode: "lines+markers",
         yaxis: "y2",
         line: { color: "#f59e0b", width: 3 },
         marker: { size: 8, color: "#f59e0b" },
-        hovertemplate: "<b>%{x}</b><br>Antioquia: %{y:,.0f}<extra></extra>"
+        hovertemplate: "<b>Periodo %{x}</b><br>Antioquia: %{customdata[0]} (%{customdata[1]} del país)<extra></extra>"
       }
     ], {
       ...layoutBase,
-      margin: { t: 22, r: 64, b: 48, l: 70 },
-      yaxis: { ...layoutBase.yaxis, title: "Colombia" },
-      yaxis2: { title: "Antioquia", overlaying: "y", side: "right", showgrid: false, color: "#f59e0b" }
+      margin: { t: 24, r: 72, b: 56, l: 76 },
+      xaxis: {
+        ...layoutBase.xaxis,
+        type: "category",
+        title: { text: "Periodo académico", standoff: 10 }
+      },
+      yaxis: {
+        ...layoutBase.yaxis,
+        title: { text: "Colombia (estudiantes)", standoff: 10 },
+        rangemode: "tozero"
+      },
+      yaxis2: {
+        title: { text: "Antioquia (estudiantes)", font: { color: "#f59e0b" }, standoff: 10 },
+        overlaying: "y",
+        side: "right",
+        showgrid: false,
+        color: "#f59e0b",
+        separatethousands: true,
+        automargin: true
+      }
     }, cfg);
 
-    // 2. Top 12 departamentos
+    // 2. Top 12 departamentos (2021-1)
     const deptosRev = [...D.top_deptos].reverse();
     Plotly.newPlot("chart-deptos", [{
       y: deptosRev.map(r => r.departamento_oferta),
-      x: deptosRev.map(r => r.matriculados_sem1),
+      x: deptosRev.map(r => toNum(r.matriculados_sem1)),
+      customdata: deptosRev.map(r => [
+        fmtInt(r.matriculados_sem1),
+        fmtPct(r.pct_oficial, 1),
+        fmtInt(r.total_ies)
+      ]),
       type: "bar",
       orientation: "h",
       marker: {
@@ -306,56 +379,110 @@
       },
       text: deptosRev.map(r => fmtInt(r.matriculados_sem1)),
       textposition: "outside",
-      hovertemplate: "<b>%{y}</b><br>Matriculados: %{x:,.0f}<extra></extra>"
+      cliponaxis: false,
+      hovertemplate: "<b>%{y}</b><br>Matriculados 2021-1: %{customdata[0]}<br>Sector oficial anual: %{customdata[1]}<br>IES activas: %{customdata[2]}<extra></extra>"
     }], {
       ...layoutBase,
-      margin: { t: 10, r: 70, b: 40, l: 135 },
-      xaxis: { ...layoutBase.xaxis, title: "Estudiantes matriculados" }
+      margin: { t: 10, r: 86, b: 48, l: 145 },
+      xaxis: {
+        ...layoutBase.xaxis,
+        type: "linear",
+        separatethousands: true,
+        title: { text: "Estudiantes matriculados (2021-1)", standoff: 10 }
+      },
+      yaxis: {
+        ...layoutBase.yaxis,
+        type: "category"
+      }
     }, cfg);
 
-    // 3. Metodología (Presencial / Distancia / Virtual)
-    Plotly.newPlot("chart-metodologia", [
-      { x: D.anios, y: D.metodologias["Presencial"], name: "Presencial", type: "bar", marker: { color: "#38bdf8" } },
-      { x: D.anios, y: D.metodologias["Distancia (tradicional)"], name: "Distancia (tradicional)", type: "bar", marker: { color: "#a78bfa" } },
-      { x: D.anios, y: D.metodologias["Virtual"], name: "Virtual", type: "bar", marker: { color: "#34d399" } }
-    ], {
+    // 3. Metodología (Presencial / Distancia / Virtual) — eje X categórico para evitar decimales
+    const aniosCat = D.anios.map(a => `${a}-1`);
+    const seriesMet = [
+      { key: "Presencial", color: "#38bdf8" },
+      { key: "Distancia (tradicional)", color: "#a78bfa" },
+      { key: "Virtual", color: "#34d399" }
+    ];
+
+    Plotly.newPlot("chart-metodologia", seriesMet.map(s => {
+      const vals = (D.metodologias[s.key] || []).map(toNum);
+      return {
+        x: aniosCat,
+        y: vals,
+        customdata: vals.map((v, i) => {
+          const tot = seriesMet.reduce((acc, m) => acc + toNum((D.metodologias[m.key] || [])[i]), 0);
+          return [fmtInt(v), fmtPct(tot ? (100 * v / tot) : 0, 2)];
+        }),
+        name: s.key,
+        type: "bar",
+        marker: { color: s.color },
+        hovertemplate: `<b>${s.key} (%{x})</b><br>Matriculados: %{customdata[0]} (%{customdata[1]})<extra></extra>`
+      };
+    }), {
       ...layoutBase,
       barmode: "stack",
-      yaxis: { ...layoutBase.yaxis, title: "Matriculados (Semestre 1)" }
+      xaxis: {
+        ...layoutBase.xaxis,
+        type: "category",
+        title: { text: "Periodo académico", standoff: 10 }
+      },
+      yaxis: {
+        ...layoutBase.yaxis,
+        title: { text: "Matriculados (Semestre 1)", standoff: 10 }
+      }
     }, cfg);
 
-    // 4. Áreas x Género
+    // 4. Áreas x Género (2021 acumulado)
     const areasRev = [...D.areas_genero].reverse();
-    const acortar = s => s.length > 34 ? s.slice(0, 32) + "…" : s;
     Plotly.newPlot("chart-areas", [
       {
         y: areasRev.map(r => acortar(r.area)),
-        x: areasRev.map(r => r.femenino),
+        x: areasRev.map(r => toNum(r.femenino)),
+        customdata: areasRev.map(r => [r.area, fmtInt(r.femenino), fmtPct(r.pct_femenino, 1)]),
         name: "Femenino",
         type: "bar",
         orientation: "h",
-        marker: { color: "#fb7185" }
+        marker: { color: "#fb7185" },
+        hovertemplate: "<b>%{customdata[0]}</b><br>Femenino: %{customdata[1]} (%{customdata[2]})<extra></extra>"
       },
       {
         y: areasRev.map(r => acortar(r.area)),
-        x: areasRev.map(r => r.masculino),
+        x: areasRev.map(r => toNum(r.masculino)),
+        customdata: areasRev.map(r => [r.area, fmtInt(r.masculino), fmtPct(100 - toNum(r.pct_femenino), 1)]),
         name: "Masculino",
         type: "bar",
         orientation: "h",
-        marker: { color: "#38bdf8" }
+        marker: { color: "#38bdf8" },
+        hovertemplate: "<b>%{customdata[0]}</b><br>Masculino: %{customdata[1]} (%{customdata[2]})<extra></extra>"
       }
     ], {
       ...layoutBase,
       barmode: "group",
-      margin: { t: 10, r: 20, b: 48, l: 215 },
-      xaxis: { ...layoutBase.xaxis, title: "Matriculados acumulados" }
+      margin: { t: 10, r: 24, b: 56, l: 225 },
+      xaxis: {
+        ...layoutBase.xaxis,
+        type: "linear",
+        separatethousands: true,
+        title: { text: "Matriculados acumulados (2021)", standoff: 10 }
+      },
+      yaxis: {
+        ...layoutBase.yaxis,
+        type: "category"
+      }
     }, cfg);
 
-    // 5. Top IES Antioquia
+    // 5. Top IES Antioquia (2021-1)
     const iesRev = [...D.top_ies_antioquia].reverse();
     Plotly.newPlot("chart-ies", [{
-      y: iesRev.map(r => acortar(r.nombre_ies)),
-      x: iesRev.map(r => r.matriculados_sem1),
+      y: iesRev.map(r => acortar(r.nombre_ies, 36)),
+      x: iesRev.map(r => toNum(r.matriculados_sem1)),
+      customdata: iesRev.map(r => [
+        limpiarNombre(r.nombre_ies),
+        fmtInt(r.matriculados_sem1),
+        r.sector_nombre,
+        fmtInt(r.total_programas),
+        r.codigo_ies
+      ]),
       type: "bar",
       orientation: "h",
       marker: {
@@ -363,26 +490,57 @@
       },
       text: iesRev.map(r => fmtInt(r.matriculados_sem1)),
       textposition: "outside",
-      hovertemplate: "<b>%{y}</b><br>Matriculados: %{x:,.0f}<extra></extra>"
+      cliponaxis: false,
+      hovertemplate: "<b>%{customdata[0]}</b> (SNIES %{customdata[4]})<br>Matriculados 2021-1: %{customdata[1]}<br>Sector: %{customdata[2]} · Programas: %{customdata[3]}<extra></extra>"
     }], {
       ...layoutBase,
-      margin: { t: 10, r: 72, b: 42, l: 245 },
-      xaxis: { ...layoutBase.xaxis, title: "Matriculados (Semestre 1) · Dorado = I.U. Pascual Bravo, Verde = Oficial" }
+      margin: { t: 10, r: 86, b: 52, l: 255 },
+      xaxis: {
+        ...layoutBase.xaxis,
+        type: "linear",
+        separatethousands: true,
+        title: { text: "Matriculados 2021-1 · Dorado = I.U. Pascual Bravo, Verde = Oficial", standoff: 10 }
+      },
+      yaxis: {
+        ...layoutBase.yaxis,
+        type: "category"
+      }
     }, cfg);
 
-    // 6. Tabla Lambda Batch vs Streaming
+    // 6. Tabla Lambda Batch vs Streaming (con fila de total acumulado)
     const tbody = document.getElementById("tabla-lambda");
-    D.reconciliacion_lambda.forEach(r => {
-      const diff = r.batch_matriculados - r.stream_matriculados;
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${r.anio}</td>
-        <td class="num">${fmtInt(r.batch_matriculados)}</td>
-        <td class="num">${fmtInt(r.stream_matriculados)}</td>
-        <td class="num">${fmtInt(diff)}</td>
+    if (tbody) {
+      tbody.innerHTML = "";
+      let sumBatch = 0;
+      let sumStream = 0;
+
+      D.reconciliacion_lambda.forEach(r => {
+        const b = toNum(r.batch_matriculados);
+        const s = toNum(r.stream_matriculados);
+        const diff = b - s;
+        sumBatch += b;
+        sumStream += s;
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${r.anio}</td>
+          <td class="num">${fmtInt(b)}</td>
+          <td class="num">${fmtInt(s)}</td>
+          <td class="num">${fmtInt(diff)}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      const trTotal = document.createElement("tr");
+      trTotal.className = "highlight";
+      trTotal.innerHTML = `
+        <td>TOTAL (2015–2021)</td>
+        <td class="num">${fmtInt(sumBatch)}</td>
+        <td class="num">${fmtInt(sumStream)}</td>
+        <td class="num">${fmtInt(sumBatch - sumStream)}</td>
       `;
-      tbody.appendChild(tr);
-    });
+      tbody.appendChild(trTotal);
+    }
   </script>
 </body>
 </html>
